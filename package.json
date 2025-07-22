@@ -2,6 +2,7 @@
   "name": "marketing",
   "private": true,
   "scripts": {
+    "frog": "node ./scripts/frog.mjs",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
@@ -10,8 +11,14 @@
     "prepare": "husky",
     "pre-commit": "lint-staged"
   },
+  "bin": {
+    "f": "./scripts/frog.mjs"
+  },
   "devDependencies": {
+    "chalk": "^5.3.0",
+    "execa": "^7.1.1",
     "husky": "^9.1.7",
+    "inquirer": "^9.2.7",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.1.0",
