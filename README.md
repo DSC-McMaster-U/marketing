@@ -1,135 +1,156 @@
-# Turborepo starter
+# GDG on Campus McMaster University Marketing Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+Welcome to the GDG on Campus McMaster University Marketing monorepo! This repository contains all the web applications and shared packages for GDG on Campus McMaster University's online presence. 👋
 
-## Using this example
+## Table of Contents
 
-Run the following command:
+- [Overview](#overview)
+- [Monorepo Structure](#monorepo-structure)
+- [Technology Stack](#technology-stack)
+- [Getting Started](#getting-started)
+- [Development Tools](#development-tools)
+- [Apps Overview](#apps-overview)
+- [Contributing](#contributing)
 
-```sh
-npx create-turbo@latest
-```
+## Overview
 
-## What's inside?
+This monorepo houses multiple web applications and shared packages for GDG on Campus McMaster University's online presence, built using modern web technologies and following best practices for maintainability and scalability.
 
-This Turborepo includes the following packages/apps:
+## Monorepo Structure
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+The repository is organized into the following main directories:
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+gdg-marketing/
+├── apps/              # Main applications
+│   ├── mac-a-thon/    # Mac-a-thon Hackathon website
+│   └── website/       # Main GDSC McMaster website
+├── packages/          # Shared packages
+│   ├── eslint-config/ # Shared ESLint configurations
+│   ├── typescript-config/ # Shared TypeScript configs
+│   └── ui/           # Shared UI components
+└── scripts/          # Development scripts
+    └── frog.mjs      # Custom development utilities
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Technology Stack
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+- **Framework**: [Next.js 14](https://nextjs.org/) with TypeScript
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Content Management**: [Sanity CMS](https://www.sanity.io/)
+- **Package Management**: [pnpm](https://pnpm.io/)
+- **Monorepo Tools**: [Turborepo](https://turbo.build/)
+- **Testing**: [Jest](https://jestjs.io/) with React Testing Library
+- **CI/CD**: GitHub Actions
+- **Code Quality**: ESLint, Prettier
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## Getting Started
 
-### Develop
+1. **Prerequisites**
+   - Node.js (v18 or later)
+   - pnpm (v8 or later)
+   - Git
 
-To develop all apps and packages, run the following command:
+2. **Installation**
 
-```
-cd my-turborepo
+   ```bash
+   # Clone the repository
+   git clone https://github.com/DSC-McMaster-U/marketing.git
+   cd marketing
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+   # Install dependencies
+   pnpm install
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+   # Setup development environment
+   pnpm run setup
+   ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+3. **Development**
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+   ```bash
+   # Run all apps in development mode
+   pnpm run dev
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+   # Run a specific app
+   pnpm run dev --filter=website
+   # or
+   pnpm run dev --filter=mac-a-thon
+   ```
 
-### Remote Caching
+## Development Tools
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Frog Scripts
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+The repository includes custom development scripts (`frog.mjs`) to streamline common tasks:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+```bash
+# Create a new component
+pnpm frog component MyComponent
 
-```
-cd my-turborepo
+# Create a new page
+pnpm frog page my-page
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+# Generate types from Sanity schema
+pnpm frog sanity-types
 ```
 
-## Useful Links
+### Build Commands
 
-Learn more about the power of Turborepo:
+```bash
+# Build all apps and packages
+pnpm run build
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+# Build specific app
+pnpm run build --filter=website
+```
+
+## Apps Overview
+
+### Main Website (`/apps/website`)
+
+The primary GDG on Campus McMaster University website featuring:
+
+- Event listings and registration
+- Newsletter archives
+- Team information
+- Resources for students
+- Integration with Sanity CMS
+- Firebase hosting
+
+### Mac-a-thon (`/apps/mac-a-thon`)
+
+The annual hackathon website including:
+
+- Event details and registration
+- FAQ section
+- Sponsor information
+- Schedule and updates
+- Dynamic content management via Sanity
+
+## Contributing
+
+1. Branch naming convention:
+
+   ```
+   feature/YOUR_TICKET_NAME
+   ```
+
+2. Development workflow:
+   - Create a branch from `main`
+   - Make your changes
+   - Write tests
+   - Create a pull request
+   - Get review and approval
+   - Merge to `main`
+
+3. Testing:
+
+   ```bash
+   # Run all tests
+   pnpm test
+
+   # Run tests for specific app
+   pnpm test --filter=website
+   ```
+
+For more detailed information about each application, please refer to their respective README files in the `apps` directory.
