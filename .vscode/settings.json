@@ -16,7 +16,6 @@
   "editor.cursorWidth": 3,
   "editor.renderLineHighlight": "all",
   "editor.renderWhitespace": "boundary",
-  "editor.renderIndentGuides": true,
   "editor.minimap.enabled": false,
   "editor.smoothScrolling": true,
   "workbench.list.smoothScrolling": true,
@@ -42,9 +41,6 @@
     "source.fixAll": "always",
     "source.organizeImports": "always"
   },
-
-  // Accessibility & Ergonomics
-  "workbench.activityBar.visible": true,
   "workbench.statusBar.visible": true,
   "workbench.sideBar.location": "left",
   "window.zoomLevel": 1,
@@ -67,5 +63,6 @@
   // Misc
   "breadcrumbs.enabled": true,
   "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false
+  "explorer.confirmDragAndDrop": false,
+  "editor.guides.indentation": true
 }
