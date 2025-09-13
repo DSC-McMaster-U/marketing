@@ -58,11 +58,12 @@ gdg-marketing/
    git clone https://github.com/DSC-McMaster-U/marketing.git
    cd marketing
 
-   # Install dependencies
+   # Install root dependencies
    pnpm install
 
-   # Setup development environment
-   pnpm run setup
+   # Install project dependencies using Frog
+   pnpm frog
+   # Select each project and choose "install packages" option
    ```
 
 3. **Development**
@@ -79,19 +80,23 @@ gdg-marketing/
 
 ## Development Tools
 
-### Frog Scripts
+### Frog Scripts 🐸
 
-The repository includes custom development scripts (`frog.mjs`) to streamline common tasks:
+The repository includes custom development scripts (`frog.mjs`) to streamline common tasks. Run `pnpm frog` to access the interactive CLI:
+
+Available commands:
+
+- **Development Server**: Start a development server for any project
+- **Package Management**: Install/update dependencies for specific projects
+- **Secrets Management**: Sync project secrets
 
 ```bash
-# Create a new component
-pnpm frog component MyComponent
+# Run the interactive Frog CLI
+pnpm frog
 
-# Create a new page
-pnpm frog page my-page
-
-# Generate types from Sanity schema
-pnpm frog sanity-types
+# This will prompt you to:
+# 1. Select a project (website or mac-a-thon)
+# 2. Choose an action (dev, install packages, sync secrets)
 ```
 
 ### Build Commands
