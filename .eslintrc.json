@@ -2,7 +2,13 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
     "prettier"
+  ],
+  "ignorePatterns": [
+    "*.config.js",
+    "scripts/**/*.js",
+    "node_modules/",
+    "dist/",
+    "*.d.ts"
   ]
 }
