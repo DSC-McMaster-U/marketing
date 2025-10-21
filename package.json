@@ -1,10 +1,16 @@
 {
   "name": "marketing",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "private": true,
   "scripts": {
     "frog": "node ./scripts/frog.mjs",
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:website": "turbo run dev --filter=website",
+    "dev:mac-a-thon": "turbo run dev --filter=mac-a-thon",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
