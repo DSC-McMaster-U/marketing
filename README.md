@@ -120,7 +120,6 @@ The primary GDG on Campus McMaster University website featuring:
 - Team information
 - Resources for students
 - Integration with Sanity CMS
-- Firebase hosting
 
 ### Mac-a-thon (`/apps/mac-a-thon`)
 
@@ -147,15 +146,5 @@ The annual hackathon website including:
    - Create a pull request
    - Get review and approval
    - Merge to `main`
-
-3. Testing:
-
-   ```bash
-   # Run all tests
-   pnpm test
-
-   # Run tests for specific app
-   pnpm test --filter=website
-   ```
 
 For more detailed information about each application, please refer to their respective README files in the `apps` directory.
