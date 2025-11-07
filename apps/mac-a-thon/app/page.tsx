@@ -3,8 +3,6 @@ import Footer from '@/app/components/footer'
 import Header from '@/app/components/header'
 import StickyScroll from '@/app/components/StickyScroll'
 import BuildWithAIBanner from '@/assets/BuildWithAIBanner.png'
-import HeroIllustration from '@/assets/HeroIllustration.webp'
-import UNGoalsIllustration from '@/assets/UNGoalsIllustration.webp'
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
 import type {
@@ -72,11 +70,11 @@ const HeroSection = async () => {
           </>
         )}
         <div className='flex w-full items-center justify-center'>
-          <Image
+          {/* <Image
             src={HeroIllustration}
             alt='Hackathon photo'
             className='flex w-full md:w-3/4'
-          />
+          /> */}
         </div>
       </div>
     </section>
@@ -112,11 +110,11 @@ const AboutSection = async () => {
           )}
         </div>
         <div className='flex w-full items-center justify-center'>
-          <Image
+          {/* <Image
             src={UNGoalsIllustration}
             alt='Hackathon photo'
             className='flex w-full md:w-3/4'
-          />
+          /> */}
         </div>
       </div>
     </section>
