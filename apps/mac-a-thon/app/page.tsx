@@ -270,7 +270,7 @@ const FAQSection = async () => {
 
 const Home = () => {
   return (
-    <>
+    <div className='beach-scene'>
       <Header />
       <main>
         <HeroSection />
@@ -280,7 +280,7 @@ const Home = () => {
         <FAQSection />
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 
