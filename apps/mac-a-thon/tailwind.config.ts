@@ -9,16 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          '"Noto Sans"',
-          'ui-sans-serif',
-          'system-ui',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
-        ],
+        body: ['var(--font-work-sans)', 'sans-serif'],
+        heading: ['var(--font-original-surfer)', 'cursive'],
       },
       colors: {
         google: {
