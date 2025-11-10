@@ -58,6 +58,7 @@ export interface Project {
   name: string
   description: string
   link: string
+  status: 'in-progress' | 'completed' | 'archived'
   image?: {
     _type: string
     asset: {

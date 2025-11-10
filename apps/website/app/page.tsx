@@ -268,42 +268,114 @@ const TeamSection: FC = async () => {
                     </div>
                   )}
                   {isInfiniteCarousel && (
-                    <div className='relative overflow-x-auto'>
-                      <div className='flex flex-row space-x-4'>
-                        {teamItem.projects?.map(
-                          ({ _key, name, image, link }: Project) => (
-                            <div className='flex flex-col gap-y-2' key={_key}>
-                              <Link
-                                href={link}
-                                target='_blank'
-                                rel='noreferrer'
-                              >
-                                <div className='bg-white-03 dark:bg-black-03 flex h-40 w-40 items-center justify-center rounded-xl md:w-64'>
-                                  {image ? (
-                                    <Image
-                                      src={urlFor(image.asset).url()}
-                                      alt={name}
-                                      width={150}
-                                      height={150}
-                                    />
-                                  ) : (
-                                    <Icons.MdCode
-                                      size={200}
-                                      className='text-2xl'
-                                    />
-                                  )}
+                    <>
+                      {/* Active Projects Section */}
+                      <div className='relative overflow-x-auto'>
+                        <div className='flex flex-row space-x-4'>
+                          {teamItem.projects
+                            ?.filter((project) => project.status !== 'archived')
+                            .map(
+                              ({
+                                _key,
+                                name,
+                                image,
+                                link,
+                                status,
+                              }: Project) => (
+                                <div
+                                  className='flex flex-col gap-y-2'
+                                  key={_key}
+                                >
+                                  <Link
+                                    href={link}
+                                    target='_blank'
+                                    rel='noreferrer'
+                                  >
+                                    <div className='bg-white-03 dark:bg-black-03 flex h-40 w-40 items-center justify-center rounded-xl md:w-64'>
+                                      {image ? (
+                                        <Image
+                                          src={urlFor(image.asset).url()}
+                                          alt={name}
+                                          width={150}
+                                          height={150}
+                                        />
+                                      ) : (
+                                        <Icons.MdCode
+                                          size={200}
+                                          className='text-2xl'
+                                        />
+                                      )}
+                                    </div>
+                                  </Link>
+                                  <div className='flex w-40 flex-col items-center md:w-64'>
+                                    <span className='max-w-full break-words text-center'>
+                                      {name}
+                                    </span>
+                                    <span className='text-black-03 dark:text-white-03 text-sm'>
+                                      {status === 'in-progress'
+                                        ? 'In Progress'
+                                        : 'Completed'}
+                                    </span>
+                                  </div>
                                 </div>
-                              </Link>
-                              <div className='flex w-40 flex-col items-center md:w-64'>
-                                <span className='max-w-full break-words text-center'>
-                                  {name}
-                                </span>
-                              </div>
-                            </div>
-                          ),
-                        )}
+                              ),
+                            )}
+                        </div>
                       </div>
-                    </div>
+
+                      {/* Archived Projects Section */}
+                      {teamItem.projects?.some(
+                        (project) => project.status === 'archived',
+                      ) && (
+                        <details className='group'>
+                          <summary className='text-black-03 dark:text-white-03 flex cursor-pointer items-center gap-x-2 text-sm'>
+                            <Icons.MdExpandMore className='transition-transform group-open:rotate-180' />
+                            Archived Projects
+                          </summary>
+                          <div className='relative mt-4 overflow-x-auto'>
+                            <div className='flex flex-row space-x-4'>
+                              {teamItem.projects
+                                ?.filter(
+                                  (project) => project.status === 'archived',
+                                )
+                                .map(({ _key, name, image, link }: Project) => (
+                                  <div
+                                    className='flex flex-col gap-y-2'
+                                    key={_key}
+                                  >
+                                    <Link
+                                      href={link}
+                                      target='_blank'
+                                      rel='noreferrer'
+                                    >
+                                      <div className='bg-white-03 dark:bg-black-03 flex h-40 w-40 items-center justify-center rounded-xl md:w-64'>
+                                        {image ? (
+                                          <Image
+                                            src={urlFor(image.asset).url()}
+                                            alt={name}
+                                            width={150}
+                                            height={150}
+                                          />
+                                        ) : (
+                                          <Icons.MdCode
+                                            size={200}
+                                            className='text-2xl'
+                                          />
+                                        )}
+                                      </div>
+                                    </Link>
+                                    <div className='flex w-40 flex-col items-center md:w-64'>
+                                      <span className='max-w-full break-words text-center'>
+                                        {name}
+                                      </span>
+                                    </div>
+                                  </div>
+                                ))}
+                            </div>
+                          </div>
+                        </details>
+                      )}
+                    </>
                   )}
                 </div>
               </Card>
