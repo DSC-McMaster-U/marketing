@@ -18,6 +18,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
+import { FiChevronDown } from 'react-icons/fi'
 import * as Icons from 'react-icons/md'
 import AnimatedHero, { AnimatedHeroSvg } from './components/AnimatedHero'
 import Banner from './components/Banner'
@@ -311,7 +312,13 @@ const TeamSection: FC = async () => {
                                     <span className='max-w-full break-words text-center'>
                                       {name}
                                     </span>
-                                    <span className='text-black-03 dark:text-white-03 text-sm'>
+                                    <span
+                                      className={`text-sm ${
+                                        status === 'in-progress'
+                                          ? 'text-yellow-600 dark:text-yellow-500'
+                                          : 'text-green-600 dark:text-green-500'
+                                      }`}
+                                    >
                                       {status === 'in-progress'
                                         ? 'In Progress'
                                         : 'Completed'}
@@ -324,14 +331,14 @@ const TeamSection: FC = async () => {
                       </div>
 
                       {/* Archived Projects Section */}
-                      {teamItem.projects?.some(
-                        (project) => project.status === 'archived',
-                      ) && (
-                        <details className='group'>
-                          <summary className='text-black-03 dark:text-white-03 flex cursor-pointer items-center gap-x-2 text-sm'>
-                            <Icons.MdExpandMore className='transition-transform group-open:rotate-180' />
-                            Archived Projects
-                          </summary>
+                      <details className='group'>
+                        <summary className='text-black-03 dark:text-white-03 flex cursor-pointer items-center gap-x-2 text-base'>
+                          <FiChevronDown className='transition-transform group-open:rotate-180' />
+                          Archived
+                        </summary>
+                        {teamItem.projects?.some(
+                          (project) => project.status === 'archived',
+                        ) ? (
                           <div className='relative mt-4 overflow-x-auto'>
                             <div className='flex flex-row space-x-4'>
                               {teamItem.projects
@@ -373,8 +380,12 @@ const TeamSection: FC = async () => {
                                 ))}
                             </div>
                           </div>
-                        </details>
-                      )}
+                        ) : (
+                          <div className='text-black-03 dark:text-white-03 mt-4 text-sm'>
+                            No archived projects yet.
+                          </div>
+                        )}
+                      </details>
                     </>
                   )}
                 </div>
