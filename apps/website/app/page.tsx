@@ -329,8 +329,6 @@ const TeamSection: FC = async () => {
                             )}
                         </div>
                       </div>
-
-                      {/* Archived Projects Section */}
                       <details className='group'>
                         <summary className='text-black-03 dark:text-white-03 flex cursor-pointer items-center gap-x-2 text-base'>
                           <FiChevronDown className='transition-transform group-open:rotate-180' />
