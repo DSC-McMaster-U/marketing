@@ -18,7 +18,7 @@ export default function Header() {
 
   const pageSections = [
     { title: 'About', href: '#about' },
-    { title: 'Speakers', href: '#speakers' },
+    // { title: 'Speakers', href: '#speakers' },
     { title: 'Statistics', href: '#statistics' },
     { title: 'Sponsors', href: '#sponsors' },
     { title: 'FAQ', href: '#faq' },
