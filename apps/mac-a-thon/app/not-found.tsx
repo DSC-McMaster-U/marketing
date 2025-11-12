@@ -1,32 +1,41 @@
-import Footer from '@/app/components/footer'
+import Footer from '@/components/footer'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
 import Link from 'next/link'
-import Logo from './/icon.svg'
+import Logo from './icon.svg'
 
 export default function NotFound() {
   return (
     <>
-      <div className='flex min-h-screen flex-col'>
-        <main className='flex flex-grow flex-col items-center justify-center p-8 text-center'>
-          <div className='max-w-2xl'>
-            <h1 className='mb-12 text-4xl font-bold'>Page Not Found</h1>
-            <p className='mb-12 text-lg text-gray-600'>
-              Oops! The page you are looking for doesn’t exist or has been
-              moved.
+      <main className='flex items-center justify-center py-12'>
+        <Card className='border-border/50 w-full max-w-lg shadow-sm'>
+          <CardContent className='flex flex-col items-center gap-6 py-10'>
+            <h1 className='text-3xl font-semibold tracking-tight'>
+              Page Not Found
+            </h1>
+            <p className='text-muted-foreground max-w-md'>
+              Oops! The page you’re looking for doesn’t exist or has been moved.
             </p>
-            <div className='mb-20 flex justify-center'>
-              <Image src={Logo} alt='' className='h-auto w-full max-w-md' />
-            </div>
-            <Link
-              href='/'
-              className='btn btn-primary rounded-2xl bg-slate-100 p-4'
-            >
-              Go to Main Page
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </div>
+
+            <Separator className='my-4 w-1/2' />
+
+            <Image
+              src={Logo}
+              alt='GDG McMaster Logo'
+              className='h-auto w-40 opacity-90'
+              priority
+            />
+
+            <Button asChild size='lg' className='mt-6'>
+              <Link href='/'>Go to Main Page</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </main>
+
+      <Footer />
     </>
   )
 }

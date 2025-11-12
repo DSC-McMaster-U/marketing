@@ -46,7 +46,7 @@ const Map = ({ address }: { address: string }) => {
         center: position,
         disableDefaultUI: true,
         zoom: 17,
-        mapId: 'GDSC_MAP_ID',
+        mapId: 'GDG_MAP_ID',
       }
 
       // setup the map
