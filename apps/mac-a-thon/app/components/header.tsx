@@ -37,11 +37,14 @@ const Header = () => {
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
+      document.body.setAttribute('data-menu-open', 'true')
     } else {
       document.body.style.overflow = 'auto'
+      document.body.removeAttribute('data-menu-open')
     }
     return () => {
       document.body.style.overflow = 'auto' // Cleanup on unmount
+      document.body.removeAttribute('data-menu-open')
     }
   }, [menuOpen])
 
@@ -54,7 +57,7 @@ const Header = () => {
       {/* Desktop Header */}
       <header
         data-testid='header'
-        className='bg-google-grey fixed left-1/2 top-8 z-50 hidden -translate-x-1/2 flex-row items-center gap-x-16 rounded-full border-opacity-10 bg-opacity-10 px-3 py-2 backdrop-blur md:flex'
+        className='bg-google-grey fixed left-0 right-0 top-8 z-50 hidden mx-8 flex-row items-center justify-between rounded-full border-opacity-10 bg-opacity-10 px-8 py-2 backdrop-blur md:flex'
       >
         <Link href='#hero' className='flex h-fit w-fit items-center'>
           <Image
@@ -65,7 +68,7 @@ const Header = () => {
         </Link>
 
         {/* Main Navigation */}
-        <nav aria-label='Main Navigation' className='flex flex-1'>
+        <nav aria-label='Main Navigation' className='flex flex-1 ml-8 md:ml-12 lg:ml-16'>
           <ul className='flex h-full flex-row items-center gap-x-8'>
             {pageSections.map((section) => (
               <li key={section.href}>

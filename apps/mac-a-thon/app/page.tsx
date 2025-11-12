@@ -1,6 +1,7 @@
 import Accordion from '@/app/components/Accordion'
 import Footer from '@/app/components/footer'
 import Header from '@/app/components/header'
+import MLHTrustBadge from '@/app/components/MLHTrustBadge'
 import StickyScroll from '@/app/components/StickyScroll'
 import BuildWithAIBanner from '@/assets/BuildWithAIBanner.png'
 import { client } from '@/sanity/lib/client'
@@ -270,6 +271,7 @@ const Home = () => {
   return (
     <div className='beach-scene'>
       <Header />
+      <MLHTrustBadge />
       <main>
         <HeroSection />
         <AboutSection />
