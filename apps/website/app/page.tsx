@@ -372,6 +372,9 @@ const TeamSection: FC = async () => {
                                       <span className='max-w-full break-words text-center'>
                                         {name}
                                       </span>
+                                      <span className='text-sm text-green-600 dark:text-green-500'>
+                                        Completed
+                                      </span>
                                     </div>
                                   </div>
                                 ))}
