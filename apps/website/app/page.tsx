@@ -270,7 +270,6 @@ const TeamSection: FC = async () => {
                   )}
                   {isInfiniteCarousel && (
                     <>
-                      {/* Active Projects Section */}
                       <div className='relative overflow-x-auto'>
                         <div className='flex flex-row space-x-4'>
                           {teamItem.projects
