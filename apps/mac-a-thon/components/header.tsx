@@ -11,7 +11,9 @@ import { SiIconFromName } from '@/utils/icon'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { MdClose, MdMenu } from 'react-icons/md'
+import { MdMenu } from 'react-icons/md'
+import MLHTrustBadge from './MLHTrustBadge'
+import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -57,29 +59,26 @@ export default function Header() {
         className='fixed top-4 z-50 hidden w-full px-4 shadow-sm backdrop-blur-md md:block'
         data-testid='header'
       >
-        <div className='border-border/40 bg-background/70 mx-auto flex max-w-7xl items-center justify-between gap-x-10 rounded-full border px-4 py-3 sm:px-6 lg:px-8'>
-          {/* Logo */}
-          <Link href='#hero' className='flex items-center'>
-            <Image
-              src={BracketIcon}
-              alt='GDG McMaster Logo'
-              className='h-5 w-auto'
-              priority
-            />
-          </Link>
-
+        <div className='border-border/40 bg-background/70 relative mx-auto flex h-12 max-w-7xl items-center justify-between gap-x-10 rounded-full border px-4 py-3 sm:px-6 lg:px-8'>
           {/* Nav Menu */}
           <NavigationMenu>
             <NavigationMenuList className='flex gap-x-6'>
+              <NavigationMenuItem key={'#home'} className='pr-4'>
+                <NavigationMenuLink asChild>
+                  <Link href='#hero' className='flex items-center'>
+                    <Image
+                      src={BracketIcon}
+                      alt='GDG McMaster Logo'
+                      className='h-5 w-auto'
+                      priority
+                    />
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
               {pageSections.map((section) => (
                 <NavigationMenuItem key={section.href}>
                   <NavigationMenuLink asChild>
-                    <Link
-                      href={section.href}
-                      className='text-foreground/80 hover:text-primary text-sm font-medium transition-colors'
-                    >
-                      {section.title}
-                    </Link>
+                    <Link href={section.href}>{section.title}</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
@@ -87,7 +86,10 @@ export default function Header() {
           </NavigationMenu>
 
           {/* Social Links */}
-          <nav className='flex items-center gap-x-3' aria-label='Social Media'>
+          <div
+            className='header-desktop-mlh-margin flex items-center gap-x-3 pr-4'
+            aria-label='Social Media'
+          >
             {socialMedia.map((media) => (
               <Link
                 key={media.name}
@@ -95,35 +97,37 @@ export default function Header() {
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label={media.name}
-                className='text-foreground/70 hover:text-primary transition-colors'
               >
                 <SiIconFromName icon={media.icon} className='h-5 w-5' />
               </Link>
             ))}
-          </nav>
+            <div className='absolute -top-4 right-4 flex w-[10%] min-w-[60px] max-w-[100px] items-start justify-start'>
+              <MLHTrustBadge />
+            </div>
+          </div>
         </div>
       </header>
 
-      {/* ---------------- MOBILE HEADER ---------------- */}
-      <header className='fixed inset-0 z-50 text-center md:hidden'>
-        {menuOpen ? (
-          <div
-            className='bg-background text-foreground fixed inset-0 flex flex-col items-center justify-center'
-            role='dialog'
-            aria-modal='true'
-          >
+      {/* ---------------- MOBILE HEADER (SHADCN SHEET) ---------------- */}
+      <header className='fixed z-50 w-full p-4 md:hidden'>
+        {/* Left: Menu Button */}
+        <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+          <SheetTrigger asChild>
             <button
-              onClick={() => setMenuOpen(false)}
-              aria-label='Close menu'
-              className='border-border/30 bg-background/60 absolute left-4 top-4 rounded-full border p-1 backdrop-blur-sm'
+              aria-label='Open menu'
+              className='border-border/30 bg-background/60 rounded-full border p-2 backdrop-blur-sm'
+              onClick={() => setMenuOpen(true)}
             >
-              <MdClose size={24} />
+              <MdMenu size={24} />
             </button>
+          </SheetTrigger>
 
+          <SheetContent side='left' className='w-72 px-6'>
+            {/* Logo */}
             <Link
               href='#hero'
               onClick={() => setMenuOpen(false)}
-              className='mb-8 flex items-center'
+              className='mb-6 flex items-center'
             >
               <Image
                 src={BracketIcon}
@@ -132,22 +136,21 @@ export default function Header() {
               />
             </Link>
 
-            <nav
-              aria-label='Main Navigation'
-              className='flex flex-col items-center gap-y-6'
-            >
+            {/* Nav Links */}
+            <nav className='flex flex-col gap-y-5'>
               {pageSections.map((section) => (
                 <Link
                   key={section.href}
                   href={section.href}
                   onClick={() => setMenuOpen(false)}
-                  className='text-foreground/80 hover:text-primary text-lg font-medium transition-colors'
+                  className='text-foreground/80 hover:text-primary text-base font-medium transition-colors'
                 >
                   {section.title}
                 </Link>
               ))}
             </nav>
 
+            {/* Social Media */}
             <div className='mt-8 flex gap-x-4'>
               {socialMedia.map((media) => (
                 <Link
@@ -156,22 +159,18 @@ export default function Header() {
                   target='_blank'
                   rel='noopener noreferrer'
                   aria-label={media.name}
+                  onClick={() => setMenuOpen(false)}
                   className='text-foreground/70 hover:text-primary transition-colors'
                 >
                   <SiIconFromName icon={media.icon} className='h-6 w-6' />
                 </Link>
               ))}
             </div>
-          </div>
-        ) : (
-          <button
-            onClick={() => setMenuOpen(true)}
-            aria-label='Open menu'
-            className='border-border/30 bg-background/60 absolute left-4 top-4 rounded-full border p-1 backdrop-blur-sm'
-          >
-            <MdMenu size={24} />
-          </button>
-        )}
+          </SheetContent>
+        </Sheet>
+        <div className='fixed right-4 top-0 flex w-[10%] min-w-[60px] max-w-[100px]'>
+          <MLHTrustBadge />
+        </div>
       </header>
     </>
   )

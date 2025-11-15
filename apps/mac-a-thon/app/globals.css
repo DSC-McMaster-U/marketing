@@ -67,6 +67,10 @@ footer {
   min-height: 100vh; /* full screen */
 }
 
+.header-desktop-mlh-margin {
+  margin: clamp(60px, 10%, 100px);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
