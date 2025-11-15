@@ -18,7 +18,6 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-import { FiChevronDown } from 'react-icons/fi'
 import * as Icons from 'react-icons/md'
 import AnimatedHero, { AnimatedHeroSvg } from './components/AnimatedHero'
 import Banner from './components/Banner'
@@ -330,7 +329,7 @@ const TeamSection: FC = async () => {
                       </div>
                       <details className='group'>
                         <summary className='text-black-03 dark:text-white-03 flex cursor-pointer items-center gap-x-2 text-base'>
-                          <FiChevronDown className='transition-transform group-open:rotate-180' />
+                          <Icons.MdArrowDropDown className='transition-transform group-open:rotate-180' />
                           Archived
                         </summary>
                         {teamItem.projects?.some(
@@ -425,7 +424,7 @@ const ThankYouSection = () => {
       <div className='flex flex-row items-center'>
         Made with&nbsp;
         <Heart width={20} height={20} />
-        &nbsp;by your GDG McMasterU Team
+        &nbsp;by your GDG McMasterU M&B Team
       </div>
     </SectionCard>
   )
