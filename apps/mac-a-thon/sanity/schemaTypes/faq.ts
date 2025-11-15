@@ -17,7 +17,7 @@ export const faqSchema = defineType({
       name: 'answer',
       title: 'Answer',
       type: 'text',
-      description: 'The answer to the question (e.g. "GDSC is the best club!")',
+      description: 'The answer to the question (e.g. "GDG is the best club!")',
       validation: (Rule) => Rule.required().error('Answer is required'),
     }),
   ],

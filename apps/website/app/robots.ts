@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin', '/api'], // Add any paths you don’t want indexed
       },
     ],
-    sitemap: 'https://gdscmcmasteru.ca/sitemap.xml',
+    sitemap: 'https://gdgmcmaster.ca/sitemap.xml',
   }
 }

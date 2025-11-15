@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import { Original_Surfer, Work_Sans } from 'next/font/google'
 
 export const metadata: Metadata = {
-  title: 'Mac-a-thon | GDSC McMaster U',
-  description: 'Mac-a-thon is an annual hackathon hosted by GDSC McMaster U.',
+  title: 'Mac-a-thon | GDG McMaster U',
+  description: 'Mac-a-thon is an annual hackathon hosted by GDG McMaster U.',
   icons: [{ url: '/icon.svg' }],
 }
 

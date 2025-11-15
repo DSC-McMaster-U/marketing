@@ -342,7 +342,7 @@ const ThankYouSection = () => {
       <div className='flex flex-row items-center'>
         Made with&nbsp;
         <Heart width={20} height={20} />
-        &nbsp;by your GDSC Team
+        &nbsp;by your GDG McMasterU M&B Team
       </div>
     </SectionCard>
   )

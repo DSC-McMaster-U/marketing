@@ -4,7 +4,7 @@ import { Newsletter } from '@/types/sanity'
 import { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://gdscmcmasteru.ca'
+  const baseUrl = 'https://gdgmcmaster.ca'
 
   const newsletters = await getNewsletters()
   const eventsData = await getEvents()
