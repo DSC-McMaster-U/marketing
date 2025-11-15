@@ -131,6 +131,21 @@ export const teamSchema = defineType({
                       validation: (Rule) =>
                         Rule.required().error('Link is required'),
                     }),
+                    defineField({
+                      name: 'status',
+                      title: 'Status',
+                      type: 'string',
+                      description: 'Current status of the project',
+                      options: {
+                        list: [
+                          { title: 'In Progress', value: 'in-progress' },
+                          { title: 'Completed', value: 'completed' },
+                          { title: 'Archived', value: 'archived' },
+                        ],
+                      },
+                      validation: (Rule) =>
+                        Rule.required().error('Status is required'),
+                    }),
                   ],
                 },
               ],
