@@ -9,7 +9,7 @@ export interface SocialMedia {
 export const socialMedia = [
   {
     name: 'Instagram',
-    href: 'https://www.instagram.com/gdgmcmasteru/',
+    href: 'https://www.instagram.com/gdgmcmaster/',
     icon: <SiInstagram className='h-full min-h-6 w-full' />,
   },
   {
@@ -19,7 +19,7 @@ export const socialMedia = [
   },
   {
     name: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/gdgmcmasteru/',
+    href: 'https://www.linkedin.com/company/gdscmcmasteru/',
     icon: <SiLinkedin className='h-full min-h-6 w-full' />,
   },
   {

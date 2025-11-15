@@ -29,7 +29,7 @@ export default function Header() {
   const socialMedia = [
     {
       name: 'Instagram',
-      url: 'https://www.instagram.com/gdgmcmasteru/',
+      url: 'https://www.instagram.com/gdgmcmaster/',
       icon: 'SiInstagram',
     },
     {
@@ -39,7 +39,7 @@ export default function Header() {
     },
     {
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/company/gdgmcmasteru/',
+      url: 'https://www.linkedin.com/company/gdscmcmasteru/',
       icon: 'SiLinkedin',
     },
   ]
