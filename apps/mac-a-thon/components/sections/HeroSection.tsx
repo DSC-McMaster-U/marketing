@@ -16,9 +16,9 @@ const HeroSection = async () => {
   return (
     <section
       id='hero'
-      className='relative min-h-screen w-full max-w-none py-24 md:py-32'
+      className='relative min-h-screen w-full max-w-none overflow-x-clip py-24 md:py-32'
     >
-      <HeroBackground className='pointer-events-none absolute -bottom-36 left-1/2 w-full -translate-x-1/2' />
+      <HeroBackground className='pointer-events-none absolute -bottom-36 left-1/2 w-full min-w-max -translate-x-1/2' />
 
       <div className='relative mx-auto flex max-w-7xl flex-col items-center gap-y-8 px-6 text-center'>
         <MacAThonLogo className='h-fit w-full' />
