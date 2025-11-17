@@ -21,8 +21,8 @@ const HeroSection = async () => {
       {generalInfo.application.status === 'open' &&
       generalInfo.startDate &&
       generalInfo.endDate ? (
-        <div className='flex flex-col items-center gap-3'>
-          <Button>
+        <>
+          <Button size='lg' variant='hero'>
             <Link
               href={generalInfo.application.link ?? '#'}
               target='_blank'
@@ -37,7 +37,7 @@ const HeroSection = async () => {
               endDate: new Date(generalInfo.endDate),
             })}
           </span>
-        </div>
+        </>
       ) : (
         <div className='space-y-2'>
           <p>
