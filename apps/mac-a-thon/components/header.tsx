@@ -1,6 +1,7 @@
 'use client'
 
-import BracketIcon from '@/assets/branding/BracketIcon.svg'
+import BracketIcon from '@/components/assets/bracket-icon'
+import MLHTrustBadge from '@/components/assets/mlh-trust-badge'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -8,11 +9,9 @@ import {
   NavigationMenuList,
 } from '@/components/ui/navigation-menu'
 import { SiIconFromName } from '@/utils/icon'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { MdMenu } from 'react-icons/md'
-import MLHTrustBadge from './MLHTrustBadge'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 
 export default function Header() {
@@ -66,12 +65,7 @@ export default function Header() {
               <NavigationMenuItem key={'#home'} className='pr-4'>
                 <NavigationMenuLink asChild>
                   <Link href='#hero' className='flex items-center'>
-                    <Image
-                      src={BracketIcon}
-                      alt='GDG McMaster Logo'
-                      className='h-5 w-auto'
-                      priority
-                    />
+                    <BracketIcon className='h-5 w-auto' />
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -129,11 +123,7 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               className='mb-6 flex items-center'
             >
-              <Image
-                src={BracketIcon}
-                alt='GDG McMaster Logo'
-                className='h-6 w-auto'
-              />
+              <BracketIcon className='h-5 w-auto' />
             </Link>
 
             {/* Nav Links */}

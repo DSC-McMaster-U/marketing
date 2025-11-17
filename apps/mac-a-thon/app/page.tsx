@@ -12,7 +12,7 @@ export const revalidate = 0
 
 export default function Home() {
   return (
-    <div className='beach-scene'>
+    <>
       <Header />
       <main>
         <HeroSection />
@@ -23,6 +23,6 @@ export default function Home() {
         <FAQSection />
       </main>
       <Footer />
-    </div>
+    </>
   )
 }
