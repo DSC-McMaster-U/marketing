@@ -22,15 +22,17 @@ const HeroSection = async () => {
       generalInfo.startDate &&
       generalInfo.endDate ? (
         <>
-          <Button variant='hero' size='hero'>
-            <Link
-              href={generalInfo.application.link ?? '#'}
-              target='_blank'
-              rel='noreferrer'
-            >
-              Apply Now
-            </Link>
-          </Button>
+          <Link
+            href={generalInfo.application.link ?? '#'}
+            target='_blank'
+            rel='noreferrer'
+            className='inline-block rounded-full'
+          >
+            <Button variant='hero' size='hero' asChild>
+              <span>Apply Now</span>
+            </Button>
+          </Link>
+
           <span>
             {formatTimeline({
               startDate: new Date(generalInfo.startDate),
