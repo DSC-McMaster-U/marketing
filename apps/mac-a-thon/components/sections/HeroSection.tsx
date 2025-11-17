@@ -22,7 +22,7 @@ const HeroSection = async () => {
       generalInfo.startDate &&
       generalInfo.endDate ? (
         <>
-          <Button size='lg' variant='hero'>
+          <Button variant='hero' size='hero'>
             <Link
               href={generalInfo.application.link ?? '#'}
               target='_blank'
