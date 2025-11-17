@@ -406,9 +406,8 @@ const AnnouncementBanner: FC = async () => {
   // TO-DO:
   //   get header, link, button-text from sanity
 
-  const heading = '🚀 Join the Solution Challenge 2025!'
-  const link =
-    'https://gdg.community.dev/events/details/google-gdg-on-campus-mcmaster-university-hamilton-canada-presents-gdg-on-campus-mcmaster-solutions-challenge-2025-info/'
+  const heading = '🚀 Join the Mac-a-thon 2026!'
+  const link = 'https://mac-a-thon.gdscmcmasteru.ca/'
   const buttonText = 'Learn More'
 
   return <Banner heading={heading} link={link} buttonText={buttonText} />
