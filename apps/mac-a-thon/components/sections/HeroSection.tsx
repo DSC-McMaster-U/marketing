@@ -1,9 +1,10 @@
+import HeroBackground from '@/components/assets/hero-background'
+import MacAThonLogo from '@/components/assets/mac-a-thon-logo'
 import { Button } from '@/components/ui/button'
 import { client } from '@/sanity/lib/client'
 import type { GeneralInfo } from '@/types/sanity'
 import { formatTimeline } from '@/utils/date'
 import Link from 'next/link'
-import MacAThonLogo from '../assets/mac-a-thon-logo'
 
 const HeroSection = async () => {
   const generalInfo: GeneralInfo = await client.fetch(`
@@ -15,40 +16,45 @@ const HeroSection = async () => {
   return (
     <section
       id='hero'
-      className='relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden px-6 py-24 text-center md:py-32'
+      className='relative min-h-screen w-full max-w-none py-24 md:py-32'
     >
-      <MacAThonLogo className='h-fit w-full' />
-      {generalInfo.application.status === 'open' &&
-      generalInfo.startDate &&
-      generalInfo.endDate ? (
-        <>
-          <Link
-            href={generalInfo.application.link ?? '#'}
-            target='_blank'
-            rel='noreferrer'
-            className='inline-block rounded-full'
-          >
-            <Button variant='hero' size='hero' asChild>
-              <span>Apply Now</span>
-            </Button>
-          </Link>
+      <HeroBackground className='pointer-events-none absolute -bottom-36 left-1/2 w-full -translate-x-1/2' />
 
-          <span>
-            {formatTimeline({
-              startDate: new Date(generalInfo.startDate),
-              endDate: new Date(generalInfo.endDate),
-            })}
-          </span>
-        </>
-      ) : (
-        <div className='space-y-2'>
-          <p>
-            Applications for Mac-a-thon are now{' '}
-            <span>{generalInfo.application.status}</span>.
-          </p>
-          <p>Stay tuned for updates on our next event!</p>
-        </div>
-      )}
+      <div className='relative mx-auto flex max-w-7xl flex-col items-center gap-y-8 px-6 text-center'>
+        <MacAThonLogo className='h-fit w-full' />
+
+        {generalInfo.application.status === 'open' &&
+        generalInfo.startDate &&
+        generalInfo.endDate ? (
+          <>
+            <Button variant='hero' size='hero' asChild>
+              <Link
+                href={generalInfo.application.link ?? '#'}
+                target='_blank'
+                rel='noreferrer'
+                className='inline-block'
+              >
+                Apply Now
+              </Link>
+            </Button>
+
+            <span>
+              {formatTimeline({
+                startDate: new Date(generalInfo.startDate),
+                endDate: new Date(generalInfo.endDate),
+              })}
+            </span>
+          </>
+        ) : (
+          <div className='space-y-2'>
+            <p>
+              Applications for Mac-a-thon are now{' '}
+              <span>{generalInfo.application.status}</span>.
+            </p>
+            <p>Stay tuned for updates on our next event!</p>
+          </div>
+        )}
+      </div>
     </section>
   )
 }

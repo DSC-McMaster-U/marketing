@@ -1,6 +1,6 @@
 import { SVGProps } from 'react'
 
-const HeroForeground = (props: SVGProps<SVGSVGElement>) => (
+const HeroBackground = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width={1440}
     height={1148}
@@ -307,4 +307,4 @@ const HeroForeground = (props: SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 )
-export default HeroForeground
+export default HeroBackground
