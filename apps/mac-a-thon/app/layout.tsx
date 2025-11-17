@@ -5,7 +5,14 @@ import { Original_Surfer, Work_Sans } from 'next/font/google'
 export const metadata: Metadata = {
   title: 'Mac-a-thon | GDG McMaster U',
   description: 'Mac-a-thon is an annual hackathon hosted by GDG McMaster U.',
-  icons: [{ url: '/icon.svg' }],
+  icons: {
+    icon: [
+      { url: '/assets/icon.ico' },
+      { url: '/assets/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/assets/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [{ url: '/assets/apple-icon.png', sizes: '180x180' }],
+  },
 }
 
 // Load both fonts — Work Sans as default, Surfer as secondary
