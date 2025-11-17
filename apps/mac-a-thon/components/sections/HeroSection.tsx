@@ -17,7 +17,7 @@ const HeroSection = async () => {
       id='hero'
       className='relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden px-6 py-24 text-center md:py-32'
     >
-      <MacAThonLogo />
+      <MacAThonLogo className='h-fit w-full' />
       {generalInfo.application.status === 'open' &&
       generalInfo.startDate &&
       generalInfo.endDate ? (
