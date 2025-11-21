@@ -1,3 +1,4 @@
+import SponsorBackground from '@/components/assets/sponsor-background'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { client } from '@/sanity/lib/client'
@@ -5,6 +6,7 @@ import { urlFor } from '@/sanity/lib/image'
 import type { Sponsor } from '@/types/sanity'
 import Image from 'next/image'
 import Link from 'next/link'
+
 
 const SponsorsSection = async () => {
   const sponsors: Sponsor[] = await client.fetch(`
@@ -19,93 +21,75 @@ const SponsorsSection = async () => {
 
   if (!sponsors.length) return null
 
-  // Group sponsors by tier
-  const groupedSponsors = sponsors.reduce(
-    (acc, sponsor) => {
-      if (!acc[sponsor.tier]) acc[sponsor.tier] = []
-      acc[sponsor.tier].push(sponsor)
-      return acc
-    },
-    {} as Record<string, Sponsor[]>,
-  )
+  // Base design canvas: 1440x941 (from your SVG)
+  const CANVAS_W = 1440
+  const CANVAS_H = 1148
 
-  // Grid columns per tier
-  const getGridCols = (tier: string) => {
-    switch (tier) {
-      case 'gold':
-        return 'grid-cols-1 sm:grid-cols-2'
-      case 'silver':
-        return 'grid-cols-2 md:grid-cols-3'
-      case 'bronze':
-        return 'grid-cols-3 md:grid-cols-4'
-      default:
-        return 'grid-cols-1'
-    }
-  }
+  // Convert your pixel positions to percentage of canvas
+  // Example positions tuned to signs in the SVG (adjust to your design)
+  const pxPositions = [
+    { top: 90, left: 395, w: 180, h: 50, rotate: -10}, // sign 1 plank 1
+    { top: 170, left: 390, w: 180, h: 70,rotate: -5 }, // sign 1 plank 2
+    { top: 274, left: 390, w: 180, h: 70,rotate: 4 }, // sign 1 plank 3
+    { top: 150, left: 800, w: 190, h: 70,rotate: -5 }, // sign 2 plank 1
+    { top: 270, left: 810, w: 180, h: 70,rotate: -5 }, // sign 2 plank 2
+    { top: 390, left: 810, w: 190, h: 70,rotate: -5 }, // sign 2 plank 3
+  ]
 
-  // Card height per tier
-  const getCardHeight = (tier: string) => {
-    switch (tier) {
-      case 'gold':
-        return 'h-44 md:h-56'
-      case 'silver':
-        return 'h-36 md:h-44'
-      case 'bronze':
-        return 'h-28 md:h-36'
-      default:
-        return 'h-40'
-    }
-  }
-
-  const tierOrder = ['gold', 'silver', 'bronze']
+  const positions = pxPositions.slice(0, sponsors.length).map(p => ({
+    top: `${(p.top / CANVAS_H) * 100}%`,
+    left: `${(p.left / CANVAS_W) * 100}%`,
+    width: `${(p.w / CANVAS_W) * 100}%`,
+    height: `${(p.h / CANVAS_H) * 100}%`,
+    rotate: p.rotate,
+  }))
 
   return (
-    <section id='sponsors' className='py-16'>
-      <div className='container mx-auto max-w-6xl space-y-8 text-center'>
-        <h2>Sponsors</h2>
-        <Separator className='mx-auto w-16' />
+    <section
+  id="sponsors"
+  className="relative min-h-screen w-full max-w-none overflow-x-clip py-24 md:py-32"
+>
+  <div className='absolute inset-0 left-1/2 -translate-x-1/2 w-[1440px]'>
+  
 
-        {tierOrder.map((tier) => {
-          const sponsorsForTier = groupedSponsors[tier]
-          if (!sponsorsForTier?.length) return null
+    {/* Centered content container */}
+    <div className="relative w-[1440px] h-[1148px] mx-auto overflow-visible">
+  <SponsorBackground className="absolute inset-0" />
 
-          return (
-            <div key={tier} className='space-y-6'>
-              <div
-                className={`grid ${getGridCols(tier)} place-items-center gap-8`}
-              >
-                {sponsorsForTier.map((sponsor) => (
-                  <Link
-                    key={sponsor._id}
-                    href={sponsor.website ?? '#'}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='w-full'
-                    aria-label={`Visit ${sponsor.name}`}
-                  >
-                    <Card>
-                      <CardContent
-                        className={`relative w-full ${getCardHeight(
-                          tier,
-                        )} flex items-center justify-center`}
-                      >
-                        <Image
-                          src={urlFor(sponsor.logo.asset).url()}
-                          alt={sponsor.name}
-                          fill
-                          className='object-contain p-6'
-                        />
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )
-        })}
-      </div>
+  {sponsors.map((sponsor, index) => {
+    const pos = positions[index]
+    if (!pos) return null
+    return (
+      <Link
+        key={sponsor._id}
+        href={sponsor.website ?? '#'}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visit ${sponsor.name}`}
+        className="absolute"
+        style={{
+          top: pos.top,
+          left: pos.left,
+          width: pos.width,
+          height: pos.height,
+          transform: `rotate(${pos.rotate}deg)`,
+        }}
+      >
+        <Image
+          src={urlFor(sponsor.logo.asset).url()}
+          alt={sponsor.name}
+          fill
+          className="object-contain"
+          sizes="(max-width: 1024px) 90vw, 60vw"
+        />
+      </Link>
+    )
+  })}
+          </div>
+        </div>
     </section>
   )
 }
 
 export default SponsorsSection
+
