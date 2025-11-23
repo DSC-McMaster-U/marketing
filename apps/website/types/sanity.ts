@@ -93,7 +93,7 @@ export interface Member {
   _key: string
   name: string
   position: string
-  picture: {
+  picture?: {
     _type: string
     asset: {
       _ref: string

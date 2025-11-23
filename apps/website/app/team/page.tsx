@@ -54,13 +54,15 @@ const TeamsSections = async () => {
               <MemberCard
                 key={member._key}
                 Image={
-                  <Image
-                    src={urlFor(member.picture.asset).url()}
-                    alt={member.name}
-                    width={224}
-                    height={224}
-                    className='h-56 w-56 overflow-hidden rounded-md object-cover'
-                  />
+                  member.picture ? (
+                    <Image
+                      src={urlFor(member.picture.asset).url()}
+                      alt={member.name}
+                      width={224}
+                      height={224}
+                      className='h-56 w-56 overflow-hidden rounded-md object-cover'
+                    />
+                  ) : null
                 }
                 Content={
                   <>
