@@ -8,6 +8,7 @@ import Header from '../components/Header'
 import MemberCard from '../components/MemberCard'
 import Pill from '../components/Pill'
 import SectionCard from '../components/SectionCard'
+import getTeam, { TeamMember } from '@/app/lib/getTeam'
 
 export const metadata: Metadata = {
   title: 'Team | Google Developer Group on Campus | McMaster University',
@@ -38,19 +39,67 @@ const HeroSection = () => {
 }
 
 const TeamsSections = async () => {
-  const team: Team = await fetchTeam()
+  
+  const gdgTeam: TeamMember[] = await getTeam();
+
+  if (gdgTeam.length > 0) {
+    return (
+      <SectionCard
+        id="organizers"
+        title="Organizers"
+        description="Sourced live from the GDG API"
+      >
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+          {gdgTeam.map((m) => (
+            <MemberCard
+              key={m.id}
+              Image={
+                m.photoUrl ? (
+                  <Image
+                    src={m.photoUrl}
+                    alt={m.name}
+                    width={224}
+                    height={224}
+                    className="h-56 w-56 overflow-hidden rounded-md object-cover"
+                  />
+                ) : (
+                  <div className="h-56 w-56 rounded-md bg-neutral-100" />
+                )
+              }
+              Content={
+                <>
+                  <span className="text-lg font-semibold">{m.name}</span>
+                  {m.role && <span className="text-base">{m.role}</span>}
+                </>
+              }
+            />
+          ))}
+        </div>
+      </SectionCard>
+    );
+  }
+
+  
+  const team: Team = await fetchTeam();
+  if (!team?.teams?.length) {
+    return (
+      <p className="px-4 py-8 text-center text-neutral-600">
+        No team data available.
+      </p>
+    );
+  }
 
   return (
     <>
-      {team?.teams?.map((teamItem: TeamItem) => (
+      {team.teams.map((teamItem: TeamItem) => (
         <SectionCard
           key={teamItem._key}
           id={teamItem.name}
           description={teamItem.description}
           title={teamItem.name}
         >
-          <div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3'>
-            {teamItem?.members?.map((member: Member) => (
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+            {teamItem.members?.map((member: Member) => (
               <MemberCard
                 key={member._key}
                 Image={
@@ -59,13 +108,13 @@ const TeamsSections = async () => {
                     alt={member.name}
                     width={224}
                     height={224}
-                    className='h-56 w-56 overflow-hidden rounded-md object-cover'
+                    className="h-56 w-56 overflow-hidden rounded-md object-cover"
                   />
                 }
                 Content={
                   <>
-                    <span className='text-lg font-semibold'>{member.name}</span>
-                    <span className='text-base'>{member.position}</span>
+                    <span className="text-lg font-semibold">{member.name}</span>
+                    <span className="text-base">{member.position}</span>
                   </>
                 }
               />
@@ -74,8 +123,10 @@ const TeamsSections = async () => {
         </SectionCard>
       ))}
     </>
-  )
-}
+  );
+};
+
+
 
 const TeamPage = () => {
   return (
