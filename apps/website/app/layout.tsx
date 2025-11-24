@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
+// 🚀 This makes the page ALWAYS fetch fresh content from Sanity (can be updated in the future for ISR to improve performance)
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: 'Google Developer Group on Campus | McMaster University',
   description:
