@@ -1,6 +1,6 @@
-# GDSC McMaster U Website
+# GDG McMaster U Website
 
-Welcome to the GDSC McMaster U Website project repository! 👋
+Welcome to the GDG McMaster U Website project repository! 👋
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ Welcome to the GDSC McMaster U Website project repository! 👋
 
 ## General Info
 
-This project aims to create a modern website for the McMaster chapter of Google Developer Student Club (GDSC). The website is designed to provide information about events, resources, and opportunities for students interested in technology and development.
+This project aims to create a modern website for the McMaster chapter of Google Developer Group (GDG). The website is designed to provide information about events, resources, and opportunities for students interested in technology and development.
 
 ### Technologies Used
 
@@ -31,7 +31,7 @@ For more detailed information on each technology, be sure to check out their off
 
 ## Contribution
 
-Everyone in the GDSC McMaster U Chapter is encouraged to contribute to this project! Please take a moment to review our contribution guidelines.
+Everyone in the GDG McMaster U Chapter is encouraged to contribute to this project! Please take a moment to review our contribution guidelines.
 
 ### Contribution Practices
 

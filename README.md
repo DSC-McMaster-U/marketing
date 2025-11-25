@@ -24,7 +24,7 @@ The repository is organized into the following main directories:
 gdg-marketing/
 ├── apps/              # Main applications
 │   ├── mac-a-thon/    # Mac-a-thon Hackathon website
-│   └── website/       # Main GDSC McMaster website
+│   └── website/       # Main GDG McMaster website
 ├── packages/          # Shared packages
 │   ├── eslint-config/ # Shared ESLint configurations
 │   ├── typescript-config/ # Shared TypeScript configs
