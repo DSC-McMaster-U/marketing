@@ -12,7 +12,7 @@ const AboutSection = async () => {
     >
       {/* FULL BACKGROUND IMAGE */}
       <Image
-        src='/assets/background.png'
+        src='/assets/about-background.png'
         alt='Beach background'
         fill
         priority

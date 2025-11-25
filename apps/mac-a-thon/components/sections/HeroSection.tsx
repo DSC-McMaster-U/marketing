@@ -1,9 +1,9 @@
-import HeroBackground from '@/components/assets/hero-background'
 import MacAThonLogo from '@/components/assets/mac-a-thon-logo'
 import { Button } from '@/components/ui/button'
 import { client } from '@/sanity/lib/client'
 import type { GeneralInfo } from '@/types/sanity'
 import { formatTimeline } from '@/utils/date'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const HeroSection = async () => {
@@ -16,9 +16,17 @@ const HeroSection = async () => {
   return (
     <section
       id='hero'
-      className='relative min-h-screen w-full max-w-none overflow-x-clip py-24 md:py-32'
+      className='relative w-full max-w-none overflow-hidden overflow-x-clip bg-gradient-to-b from-white via-white to-[#f9f0b1] py-32 md:min-h-screen'
     >
-      <HeroBackground className='pointer-events-none absolute -bottom-36 left-1/2 w-full min-w-max -translate-x-1/2' />
+      {/* FULL BACKGROUND IMAGE */}
+      <Image
+        src='/assets/hero-background.png'
+        alt='Beach background'
+        fill
+        priority
+        className='pointer-events-none min-w-full select-none object-cover object-bottom'
+      />
+      {/* <HeroBackground className='pointer-events-none absolute -bottom-36 left-1/2 w-full min-w-max -translate-x-1/2' /> */}
 
       <div className='relative mx-auto flex max-w-7xl flex-col items-center gap-y-8 px-6 text-center'>
         <MacAThonLogo className='h-fit w-full' />
