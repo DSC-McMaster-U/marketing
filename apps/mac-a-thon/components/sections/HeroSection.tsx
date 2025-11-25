@@ -16,7 +16,7 @@ const HeroSection = async () => {
   return (
     <section
       id='hero'
-      className='relative w-full max-w-none overflow-hidden overflow-x-clip bg-gradient-to-b from-white via-white to-[#f9f0b1] py-32 md:min-h-screen'
+      className='relative min-h-[600px] w-full max-w-none overflow-hidden overflow-x-clip bg-gradient-to-b from-white via-white to-[#f9f0b1] py-32 sm:min-h-[800px] md:min-h-[1000px] xl:min-h-[1200px]'
     >
       {/* FULL BACKGROUND IMAGE */}
       <Image
