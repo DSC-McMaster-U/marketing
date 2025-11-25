@@ -45,17 +45,43 @@ const endpointsToTry: string[] = [
   `https://gdg.community.dev/api/chapters/${CHAPTER_ID}/?expand=organizers&fields=organizers.id,organizers.name,organizers.first_name,organizers.last_name,organizers.title,organizers.role,organizers.avatar_url,organizers.photo_url,organizers.linkedin,organizers.github,organizers.website,organizers.url`,
 ]
 
+/**
+ * Safe JSON parser that returns typed data or null
+ */
+function parseJson<T>(text: string): T | null {
+  try {
+    return JSON.parse(text) as unknown as T
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Type guard for RawMember[]
+ */
+function isRawMemberArray(value: unknown): value is RawMember[] {
+  return Array.isArray(value)
+}
+
+/**
+ * Type guard for RawMember object
+ */
+function isRawMemberObj(value: unknown): value is RawMember {
+  return typeof value === 'object' && value !== null
+}
+
 function mapMember(raw: RawMember): TeamMember {
   const fallbackName =
     [
       raw.first_name ?? raw.firstName,
       raw.last_name ?? raw.lastName,
     ]
-      .filter(Boolean)
+      .filter((s): s is string => typeof s === 'string' && s.length > 0)
       .join(' ')
-      .trim()
 
-  const name = raw.name || (fallbackName.length > 0 ? fallbackName : 'Member')
+  const name =
+    raw.name ??
+    (fallbackName.length > 0 ? fallbackName : 'Member')
 
   const idSource =
     raw.id ??
@@ -70,9 +96,9 @@ function mapMember(raw: RawMember): TeamMember {
     role: raw.role ?? raw.title ?? null,
     photoUrl: raw.photo_url ?? raw.avatar_url ?? raw.image ?? null,
     links: {
-      linkedin: raw.linkedin ?? undefined,
-      github: raw.github ?? undefined,
-      website: raw.website ?? raw.url ?? undefined,
+      linkedin: raw.linkedin,
+      github: raw.github,
+      website: raw.website ?? raw.url,
     },
   }
 }
@@ -83,47 +109,41 @@ export default async function getTeam(): Promise<TeamMember[]> {
       const res = await fetch(url, { cache: 'no-store' })
       const text = await res.text()
 
-      console.log('[GDG organizers try]', 'url=', url, 'status=', res.status, 'len=', text.length)
-
       if (!res.ok || !text || (text[0] !== '{' && text[0] !== '[')) continue
 
-      let data: any
-      try {
-        data = JSON.parse(text)
-      } catch {
+      const data = parseJson<RawMember | RawMember[]>(text)
+      if (!data) continue
+
+      // Case 1: top-level array
+      if (isRawMemberArray(data)) {
+        const members = data.map(mapMember).filter(m => m.name.trim().length > 0)
+        if (members.length) return members
         continue
       }
 
-      // Case 1: data is an array
-      if (Array.isArray(data) && data.length) {
-        const members = data.map(mapMember)
-        if (members.length) return members.filter(m => m.name.trim().length > 0)
+      // From here on, data is RawMember
+      if (!isRawMemberObj(data)) continue
+
+      // Case 2: results
+      if (isRawMemberArray(data.results)) {
+        const members = data.results.map(mapMember).filter(m => m.name.trim().length > 0)
+        if (members.length) return members
       }
 
-      // Case 2: { results: [...] } or { data: [...] }
-      const results =
-        Array.isArray(data?.results) ? data.results :
-        Array.isArray(data?.data) ? data.data :
-        null
-
-      if (Array.isArray(results) && results.length) {
-        const members = results.map(mapMember)
-        if (members.length) return members.filter(m => m.name.trim().length > 0)
+      // Case 3: data.organizers (expanded)
+      if (isRawMemberArray(data.data?.organizers)) {
+        const members = data.data.organizers.map(mapMember).filter(m => m.name.trim().length > 0)
+        if (members.length) return members
       }
 
-      // Case 3: { organizers: [...] }
-      const orgs =
-        Array.isArray(data?.organizers) ? data.organizers :
-        Array.isArray(data?.data?.organizers) ? data.data.organizers :
-        null
-
-      if (Array.isArray(orgs) && orgs.length) {
-        const members = orgs.map(mapMember)
-        if (members.length) return members.filter(m => m.name.trim().length > 0)
+      // Case 4: organizers (direct)
+      if (isRawMemberArray(data.organizers)) {
+        const members = data.organizers.map(mapMember).filter(m => m.name.trim().length > 0)
+        if (members.length) return members
       }
 
     } catch {
-      // Try next endpoint
+      // try next endpoint
       continue
     }
   }
