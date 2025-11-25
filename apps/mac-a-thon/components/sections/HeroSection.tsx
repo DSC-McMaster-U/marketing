@@ -13,12 +13,18 @@ const HeroSection = async () => {
 
   if (!generalInfo) return null
 
+  const { application, startDate, endDate } = generalInfo
+  const start = startDate ? new Date(startDate) : null
+  const end = endDate ? new Date(endDate) : null
+
+  const timeline =
+    start && end ? formatTimeline({ startDate: start, endDate: end }) : null
+
   return (
     <section
       id='hero'
       className='relative min-h-[600px] w-full max-w-none overflow-hidden overflow-x-clip bg-gradient-to-b from-white via-white to-[#f9f0b1] py-32 sm:min-h-[800px] md:min-h-[1000px] xl:min-h-[1200px]'
     >
-      {/* FULL BACKGROUND IMAGE */}
       <Image
         src='/assets/hero-background.png'
         alt='Beach background'
@@ -26,18 +32,16 @@ const HeroSection = async () => {
         priority
         className='pointer-events-none min-w-full select-none object-cover object-bottom'
       />
-      {/* <HeroBackground className='pointer-events-none absolute -bottom-36 left-1/2 w-full min-w-max -translate-x-1/2' /> */}
 
       <div className='relative mx-auto flex max-w-7xl flex-col items-center gap-y-8 px-6 text-center'>
         <MacAThonLogo className='h-fit w-full' />
 
-        {generalInfo.application.status === 'open' &&
-        generalInfo.startDate &&
-        generalInfo.endDate ? (
+        {/* OPEN STATE */}
+        {application.status === 'open' && timeline ? (
           <>
             <Button variant='hero' size='hero' asChild>
               <Link
-                href={generalInfo.application.link ?? '#'}
+                href={application.link ?? '#'}
                 target='_blank'
                 rel='noreferrer'
                 className='inline-block'
@@ -46,22 +50,32 @@ const HeroSection = async () => {
               </Link>
             </Button>
 
-            <span>
-              {formatTimeline({
-                startDate: new Date(generalInfo.startDate),
-                endDate: new Date(generalInfo.endDate),
-              })}
-            </span>
+            <span>{timeline}</span>
           </>
-        ) : (
+        ) : null}
+
+        {/* OPENING-SOON STATE */}
+        {application.status === 'opening-soon' && (
           <div className='space-y-2'>
             <p>
-              Applications for Mac-a-thon are now{' '}
-              <span>{generalInfo.application.status}</span>.
+              Applications <span>open soon</span>!
             </p>
-            <p>Stay tuned for updates on our next event!</p>
+
+            {timeline && <p className='text-sm opacity-80'>{timeline}</p>}
           </div>
         )}
+
+        {/* CLOSED (or any other fallback) */}
+        {application.status !== 'open' &&
+          application.status !== 'opening-soon' && (
+            <div className='space-y-2'>
+              <p>
+                Applications for Mac-a-thon are now{' '}
+                <span>{application.status}</span>.
+              </p>
+              <p>Stay tuned for updates on our next event!</p>
+            </div>
+          )}
       </div>
     </section>
   )
