@@ -5,8 +5,11 @@ import { useEffect, useState } from "react"
 
 interface SlideCarouselProps {
   images: string[]
-  duration?: number // ms per slide
+  duration?: number
 }
+
+// Inspiration code for carousel from: https://flowbite.com/docs/components/carousel/,
+// modified for vertical scrolling and infinite loop
 
 export default function StatisticsCarousel({
   images,
