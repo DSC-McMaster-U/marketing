@@ -1,6 +1,6 @@
-# GDSC McMaster U Mac-a-thon Website
+# GDG McMaster U Mac-a-thon Website
 
-Welcome to the GDSC McMaster U Mac-a-thon Website project repository! 👋
+Welcome to the GDG McMaster U Mac-a-thon Website project repository! 👋
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ Welcome to the GDSC McMaster U Mac-a-thon Website project repository! 👋
 
 ## General Info
 
-This project aims to create a modern website for the annual Mac-a-thon Hackathon presented by McMaster's chapter of Google Developer Student Clubs (GDSC).
+This project aims to create a modern website for the annual Mac-a-thon Hackathon presented by McMaster's chapter of Google Developer Group (GDG).
 
 ### Technologies Used
 
@@ -30,7 +30,7 @@ For more detailed information on each technology, be sure to check out their off
 
 ## Contribution
 
-Everyone in the GDSC McMaster U Chapter is encouraged to contribute to this project! Please take a moment to review our contribution guidelines.
+Everyone in the GDG McMaster U Chapter is encouraged to contribute to this project! Please take a moment to review our contribution guidelines.
 
 ### Contribution Practices
 
