@@ -1,54 +1,72 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { client } from '@/sanity/lib/client'
-import { urlFor } from '@/sanity/lib/image'
-import type { Statistic } from '@/types/sanity'
-import Image from 'next/image'
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import type { Statistic } from "@/types/sanity";
+import StatisticsCarousel from "./StatisticsCarousel";
+import Image from "next/image";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+
 
 const StatisticsSection = async () => {
-  const statistics: Statistic[] = await client.fetch(`*[_type == "statistic"]`)
+  const statistics: Statistic[] = await client.fetch(`*[_type == "statistic"]`);
 
-  if (!statistics?.length) return null
+  if (!statistics || statistics.length === 0) return null;
+
+  const defaultItems = [
+    { title: "Title 1", value: "", description: "" },
+    { title: "Title 2", value: "", description: "" },
+    { title: "Title 3", value: "", description: "" },
+  ];
+
+  const leftItems = statistics.slice(0, 3).map((s, i) => s || defaultItems[i]);
+
+  const images = statistics.flatMap((s) =>
+    s.image?.asset ? [urlFor(s.image.asset).url()] : []
+  );
 
   return (
-    <section id='statistics' className='py-16'>
-      <div className='container mx-auto max-w-6xl space-y-8 text-center'>
-        <h2>Statistics</h2>
-        <Separator className='mx-auto w-16' />
+    <section id="statistics" className="relative w-full max-w-none overflow-hidden  py-10">
 
-        <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-          {statistics.map((stat) => (
-            <Card
-              key={stat._id}
-              className='border-border/40 shadow-sm transition-transform hover:scale-[1.02] hover:shadow-md'
-            >
-              {stat.image?.asset && (
-                <div className='relative h-40 w-full overflow-hidden rounded-t-lg'>
-                  <Image
-                    src={urlFor(stat.image.asset).url()}
-                    alt={stat.title}
-                    fill
-                    className='object-cover'
-                  />
-                </div>
-              )}
+      {/* Background */}
 
-              <CardHeader>
-                <CardTitle>
-                  <h4>{stat.title}</h4>
-                </CardTitle>
-              </CardHeader>
+        <Image
+        src={"/assets/StatsBackground.png"}
+        alt="Statistics Background"
+        fill
+        style={{ objectFit: "cover" }}
+        priority
+      />
+      <div className="mx-auto relative z-10 w-full">
+        
 
-              <CardContent className='space-y-2'>
-                <h3>{stat.value}</h3>
-                {stat.description && <p>{stat.description}</p>}
-              </CardContent>
-            </Card>
-          ))}
+      <div className="relative w-full aspect-[1440/1024] overflow-hidden gap-20 grid md:grid-cols-2 px-12">
+
+          {/* LEFT COLUMN */}
+          <div className="flex flex-col gap-10 justify-center py-6 max-w-xl text-white">
+            {leftItems.map((item, idx) => (
+              <Card key={idx} className="bg-black/15 text-white w-full border border-black/100">
+                <CardContent>
+                  <h3 className="text-2xl font-semibold">{item.title}</h3>
+                  {item.value && <p className="text-4xl font-bold">{item.value}</p>}
+                  {item.description && (
+                    <p className="text-lg text-white/80">{item.description}</p>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+
+          {/* RIGHT COLUMN: Vertical Carousel */}
+          <div className="flex items-center justify-center">
+            <div className="relative w-full overflow-hidden rounded-2xl bg-black/30 p-1">
+              <StatisticsCarousel images={images} />
+              <div className="pointer-events-none absolute inset-0 rounded-2xl" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default StatisticsSection
+export default StatisticsSection;
