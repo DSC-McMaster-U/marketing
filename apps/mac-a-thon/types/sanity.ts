@@ -9,7 +9,7 @@ export interface GeneralInfo {
   endDate: string // The end date of the event
   locationType: 'virtual' | 'in-person' | 'hybrid' // The type of location
   application: {
-    status: 'open' | 'closed' // The status of the application
+    status: 'open' | 'closed' | 'opening-soon' // The status of the application
     link: string // The link to the application
   }
 }

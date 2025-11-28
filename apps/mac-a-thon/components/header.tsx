@@ -55,10 +55,10 @@ export default function Header() {
     <>
       {/* ---------------- DESKTOP HEADER ---------------- */}
       <header
-        className='fixed top-4 z-50 hidden w-full px-4 shadow-sm backdrop-blur-md md:block'
+        className='fixed top-4 z-50 hidden w-full px-4 md:block'
         data-testid='header'
       >
-        <div className='border-border/40 bg-background/70 relative mx-auto flex h-12 max-w-7xl items-center justify-between gap-x-10 rounded-full border px-4 py-3 sm:px-6 lg:px-8'>
+        <div className='border-border/40 bg-background/70 relative mx-auto flex h-12 max-w-7xl items-center justify-between gap-x-10 rounded-full border px-4 py-3 shadow-sm backdrop-blur-md sm:px-6 lg:px-8'>
           {/* Nav Menu */}
           <NavigationMenu>
             <NavigationMenuList className='flex gap-x-6'>

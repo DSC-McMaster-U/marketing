@@ -60,7 +60,7 @@ const Map = ({ address }: { address: string }) => {
     }
 
     initMap()
-  }, [])
+  }, [address])
   return <div className='aspect-[7/3] max-w-full' ref={mapRef} />
 }
 
