@@ -5,7 +5,7 @@ const FaqSectionBackground = (props: SVGProps<SVGSVGElement>) => (
     xmlnsXlink='http://www.w3.org/1999/xlink'
     viewBox='0 0 1440 1052'
     fill='none'
-    preserveAspectRatio='none'
+    preserveAspectRatio='xMinYMin slice'
     {...props}
   >
     <path fill='#F3D4AA' d='M0 75.999h1440v956H0z' />
