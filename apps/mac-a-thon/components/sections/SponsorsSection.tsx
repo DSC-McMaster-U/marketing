@@ -68,7 +68,7 @@ const SponsorsSection = async () => {
     >
       <div className='relative hidden h-[1148px] w-[1440px] md:block'>
         <Image
-          src='/assets/Sponsor_Background.png'
+          src='/assets/sponsor-background.png'
           alt='Beach background'
           fill
           priority
@@ -109,7 +109,7 @@ const SponsorsSection = async () => {
         {/*Sign as base image*/}
         <div className='-mt-62 relative mx-auto aspect-[70/194] w-full max-w-[1500px]'>
           <Image
-            src='/assets/Mobile-sign.png' // your mobile sign image
+            src='/assets/sponsor-sign.png' // your mobile sign image
             alt='Sponsor sign'
             fill
             priority
