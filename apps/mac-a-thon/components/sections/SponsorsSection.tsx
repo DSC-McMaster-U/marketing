@@ -1,4 +1,3 @@
-import { Separator } from '@/components/ui/separator'
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
 import type { Sponsor } from '@/types/sanity'
@@ -61,26 +60,19 @@ const SponsorsSection = async () => {
   return (
     <section
       id='sponsors'
-      className='relative flex min-h-screen w-full max-w-none items-center justify-center overflow-x-auto py-0 md:py-0'
+      className='relative flex min-h-screen w-full max-w-none items-center justify-center overflow-x-hidden py-0 md:py-0'
       style={{
         minHeight: '1148px',
         backgroundColor: '#F3D4AA', // match your image background
       }}
     >
-      {/* Section heading */}
-      <div className='container mx-auto mb-8 max-w-6xl space-y-4 text-center'>
-        <h2 className='text-3xl font-bold tracking-tight'>Sponsors</h2>
-        <Separator className='mx-auto w-16' />
-      </div>
-
-      {/*Desktop*/}
       <div className='relative hidden h-[1148px] w-[1440px] md:block'>
         <Image
           src='/assets/Sponsor_Background.png'
           alt='Beach background'
           fill
           priority
-          className='pointer-events-none select-none overflow-x-auto object-contain object-cover object-center'
+          className='pointer-events-none select-none overflow-x-auto object-cover object-center'
         />
         {sponsors.map((sponsor, index) => {
           const pos = positions[index]
