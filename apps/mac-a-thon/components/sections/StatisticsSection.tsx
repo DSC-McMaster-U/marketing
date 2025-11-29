@@ -39,18 +39,21 @@ const StatisticsSection = () => {
         src={"/assets/StatsBackground.png"}
         alt="Statistics Background"
         fill
-        style={{ objectFit: "cover" }}
+        style={{ 
+          objectFit: "cover",
+          objectPosition: "center",
+         }}  
         priority
       />
       <div className="mx-auto relative z-10 w-full">
         
 
-      <div className="relative w-full aspect-[1440/1024] overflow-hidden gap-20 grid md:grid-cols-2 px-12">
+      <div className="relative w-full min-h-[600px] md:min-h-[900px] lg:min-h-[1024px] overflow-hidden gap-20 grid md:grid-cols-2 px-12">
 
           {/* LEFT COLUMN */}
           <div className="flex flex-col gap-10 justify-center py-6 max-w-xl text-white">
             {leftItems.map((item, idx) => (
-              <Card key={idx} className="bg-black/15 text-white w-full border border-black/100">
+              <Card key={idx} className="bg-sky-500/15 text-white w-full border border-black/100">
                 <CardContent>
                   <h3 className="text-2xl font-semibold">{item.title}</h3>
                   {item.value && <p className="text-4xl font-bold">{item.value}</p>}
