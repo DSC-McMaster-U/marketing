@@ -16,8 +16,6 @@ const StatisticsSection = async () => {
     *[_type == "statistic"]
   `)
 
-  console.log('Statistics:', statistics)
-
   if (!statistics) return null
 
   const images = statistics.flatMap((s) =>
