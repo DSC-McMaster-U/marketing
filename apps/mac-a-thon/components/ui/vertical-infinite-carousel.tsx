@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import Image from "next/image"
-import { useEffect, useState } from "react"
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 interface SlideCarouselProps {
   images: string[]
@@ -11,11 +11,10 @@ interface SlideCarouselProps {
 // Inspiration code for carousel from: https://flowbite.com/docs/components/carousel/,
 // modified for vertical scrolling and infinite loop
 
-export default function StatisticsCarousel({
+export default function VerticalInfiniteCarousel({
   images,
   duration = 3000,
 }: SlideCarouselProps) {
-
   const hasImages = images && images.length > 0
 
   // Duplicate slides for infinite scroll -- iff images exist
@@ -53,14 +52,14 @@ export default function StatisticsCarousel({
   }, [current, images?.length, hasImages])
 
   if (!hasImages) {
-    return <div className="relative w-full h-72 overflow-hidden rounded-lg" />
+    return <div className='relative h-72 w-full overflow-hidden rounded-lg' />
   }
 
   return (
-    <div className="relative w-full h-72 overflow-hidden rounded-lg">
+    <div className='relative h-72 w-full overflow-hidden rounded-lg'>
       <div
-        className={`absolute top-0 left-0 w-full h-full ${
-          noTransition ? "" : "transition-transform duration-700 ease-in-out"
+        className={`absolute left-0 top-0 h-full w-full ${
+          noTransition ? '' : 'transition-transform duration-700 ease-in-out'
         }`}
         style={{
           transform: `translateY(-${current * 100}%)`,
@@ -68,13 +67,13 @@ export default function StatisticsCarousel({
       >
         {/* Render duplicated slides */}
         {slides.map((src, i) => (
-          <div key={i} className="w-full h-72">
+          <div key={i} className='h-72 w-full'>
             <Image
               src={src}
               alt={`slide-${i}`}
               width={800}
               height={400}
-              className="w-full h-full object-cover"
+              className='h-full w-full object-cover'
             />
           </div>
         ))}

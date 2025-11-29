@@ -1,82 +1,64 @@
-"use client";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { client } from '@/sanity/lib/client'
+import { urlFor } from '@/sanity/lib/image'
+import type { Statistic } from '@/types/sanity'
+import Image from 'next/image'
+import VerticalInfiniteCarousel from '../ui/vertical-infinite-carousel'
 
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
-import type { Statistic } from "@/types/sanity";
-import StatisticsCarousel from "./StatisticsCarousel";
-import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+const StatisticsSection = async () => {
+  const statistics: Statistic[] = await client.fetch(`
+    *[_type == "statistic"]
+  `)
 
+  console.log('Statistics:', statistics)
 
-const StatisticsSection = () => {
-  const [statistics, setStatistics] = useState<Statistic[] | null>(null);
-
-  useEffect(() => {
-    client.fetch(`*[_type == "statistic"]`).then((data) => setStatistics(data));
-  }, []);
-
-  if (!statistics || statistics.length === 0) return null;
-
-  const defaultItems = [
-    { title: "Title 1", value: "", description: "" },
-    { title: "Title 2", value: "", description: "" },
-    { title: "Title 3", value: "", description: "" },
-  ];
-
-  const leftItems = statistics.slice(0, 3).map((s, i) => s || defaultItems[i]);
+  if (!statistics) return null
 
   const images = statistics.flatMap((s) =>
-    s.image?.asset ? [urlFor(s.image.asset).url()] : []
-  );
+    s.image?.asset ? [urlFor(s.image.asset).url()] : [],
+  )
 
   return (
-    <section id="statistics" className="relative w-full max-w-none overflow-hidden  py-10">
-
-      {/* Background */}
-
-        <Image
-        src={"/assets/StatsBackground.png"}
-        alt="Statistics Background"
+    <section
+      id='statistics'
+      className='relative h-fit w-full max-w-none overflow-x-hidden pb-64'
+    >
+      <Image
+        src={'/assets/statistics-background.png'}
+        alt='Statistics Background'
         fill
-        style={{ 
-          objectFit: "cover",
-          objectPosition: "center",
-         }}  
         priority
+        className='object-cover object-center'
       />
-      <div className="mx-auto relative z-10 w-full">
-        
-
-      <div className="relative w-full min-h-[600px] md:min-h-[900px] lg:min-h-[1024px] overflow-hidden gap-20 grid md:grid-cols-2 px-12">
-
-          {/* LEFT COLUMN */}
-          <div className="flex flex-col gap-10 justify-center py-6 max-w-xl text-white">
-            {leftItems.map((item, idx) => (
-              <Card key={idx} className="bg-sky-500/15 text-white w-full border border-black/100">
-                <CardContent>
-                  <h3 className="text-2xl font-semibold">{item.title}</h3>
-                  {item.value && <p className="text-4xl font-bold">{item.value}</p>}
-                  {item.description && (
-                    <p className="text-lg text-white/80">{item.description}</p>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-
-          {/* RIGHT COLUMN: Vertical Carousel */}
-          <div className="flex items-center justify-center">
-            <div className="relative w-full overflow-hidden rounded-2xl bg-black/30 p-1">
-              <StatisticsCarousel images={images} />
-              <div className="pointer-events-none absolute inset-0 rounded-2xl" />
-            </div>
-          </div>
+      <div className='relative mx-auto flex w-full max-w-7xl flex-col items-center gap-x-20 gap-y-10 py-10 md:flex-row md:py-20'>
+        <div className='flex w-full flex-col gap-y-10'>
+          {statistics.map((item, idx) => (
+            <Card
+              key={idx}
+              className='w-full rounded-lg border-none bg-[#6ecad9]/95 shadow-md'
+            >
+              <CardHeader>
+                <CardTitle>{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent className='text-2xl font-bold'>
+                {item.value && item.value}
+              </CardContent>
+              <CardFooter>{item.description && item.description}</CardFooter>
+            </Card>
+          ))}
+        </div>
+        <div className='w-full rounded-lg border-none bg-[#6ecad9]/95 p-1 shadow-md'>
+          <VerticalInfiniteCarousel images={images} />
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default StatisticsSection;
+export default StatisticsSection
