@@ -1,13 +1,20 @@
+"use client";
+
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import type { Statistic } from "@/types/sanity";
 import StatisticsCarousel from "./StatisticsCarousel";
 import Image from "next/image";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 
-const StatisticsSection = async () => {
-  const statistics: Statistic[] = await client.fetch(`*[_type == "statistic"]`);
+const StatisticsSection = () => {
+  const [statistics, setStatistics] = useState<Statistic[] | null>(null);
+
+  useEffect(() => {
+    client.fetch(`*[_type == "statistic"]`).then((data) => setStatistics(data));
+  }, []);
 
   if (!statistics || statistics.length === 0) return null;
 
