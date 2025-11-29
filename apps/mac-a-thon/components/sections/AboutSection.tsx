@@ -1,70 +1,41 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { client } from '@/sanity/lib/client'
+import { About } from '@/types/sanity'
 import Image from 'next/image'
 
 const AboutSection = async () => {
-  //const aboutInfo: About = await client.fetch(`*[_type == "about"][0]`)
+  const aboutInfo: About = await client.fetch(`*[_type == "about"][0]`)
 
   return (
     <section
       id='about'
-      className='/* beige fallback */ /* moved content UP slightly */ relative w-full max-w-none overflow-hidden bg-[#FDE9A8] py-10'
-      style={{ minHeight: '1200px' }} /* ensures full background visibility */
+      className='relative flex h-fit min-h-[1000px] w-full max-w-none overflow-x-hidden bg-[#FDE9A8]'
     >
-      {/* FULL BACKGROUND IMAGE */}
       <Image
         src='/assets/about-background.png'
         alt='Beach background'
         fill
         priority
-        className='pointer-events-none select-none object-cover object-top'
+        className='object-cover object-top'
       />
 
-      {/* OVERLAY CONTENT */}
-      <div className='relative mx-auto mt-16 max-w-7xl px-6'>
-        <div className='grid gap-16 md:grid-cols-[1fr,300px]'>
-          {/* LEFT SIDE */}
-          <div className='space-y-12'>
-            {/* MISSION */}
-            <Card className='rounded-[32px] border-none bg-[#F5E2A5]/95 shadow-md'>
-              <CardHeader>
-                <CardTitle className='text-2xl font-bold'>Mission</CardTitle>
-              </CardHeader>
-              <CardContent className='text-lg leading-relaxed'>
-                <p>
-                  At GDSC McMasterU, we connect, learn, and grow. We connect by
-                  enabling students to network with external partners and
-                  fostering a collaborative learning environment. Through
-                  hands-on workshops, events, and speaker sessions, students
-                  learn about tech stacks from database to back-end to
-                  front-end. Students grow by gaining the confidence and
-                  motivation they need for developing solutions and creating an
-                  impact.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* VISION */}
-            <Card className='rounded-[32px] border-none bg-[#F5E2A5]/95 shadow-md'>
-              <CardHeader>
-                <CardTitle className='text-2xl font-bold'>Vision</CardTitle>
-              </CardHeader>
-              <CardContent className='text-lg leading-relaxed'>
-                <p>
-                  GDSC McMasterU started in 2020, and has grown to be one of the
-                  largest chapters in North America. We are a club of passionate
-                  students who organize events that showcase Google Technologies
-                  and foster a community to learn about the software industry
-                  together. With a following in the thousands across all our
-                  social media channels, we continue to engage with students and
-                  implement feedback to grow the community!
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* RIGHT SIDE EMPTY — removes the guy */}
-          <div className='hidden md:block'></div>
-        </div>
+      <div className='relative mx-auto flex h-full w-full max-w-7xl flex-col gap-y-20 py-10 sm:min-h-[600px] md:min-h-[800px] md:w-2/3 md:py-20 lg:min-h-[1000px] xl:min-h-[1200px] 2xl:min-h-[1400px]'>
+        <Card className='w-full rounded-lg border-none bg-[#F5E2A5]/95 shadow-md'>
+          <CardHeader>
+            <CardTitle className='text-2xl font-bold'>Mission</CardTitle>
+          </CardHeader>
+          <CardContent className='text-lg leading-relaxed'>
+            <p>{aboutInfo.mission}</p>
+          </CardContent>
+        </Card>
+        <Card className='w-full rounded-lg border-none bg-[#F5E2A5]/95 shadow-md'>
+          <CardHeader>
+            <CardTitle className='text-2xl font-bold'>Vision</CardTitle>
+          </CardHeader>
+          <CardContent className='text-lg leading-relaxed'>
+            <p>{aboutInfo.vision}</p>
+          </CardContent>
+        </Card>
       </div>
     </section>
   )
