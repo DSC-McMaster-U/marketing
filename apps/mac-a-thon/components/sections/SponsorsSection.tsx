@@ -82,7 +82,6 @@ const SponsorsSection = async () => {
           priority
           className='pointer-events-none select-none overflow-x-auto object-contain object-cover object-center'
         />
-
         {sponsors.map((sponsor, index) => {
           const pos = positions[index]
           if (!pos) return null
