@@ -15,23 +15,28 @@ export default function StatisticsCarousel({
   images,
   duration = 3000,
 }: SlideCarouselProps) {
-  if (!images || images.length === 0) return null
 
-  // Duplicate slides for infinite scroll
-  const slides = [...images, ...images]
+  const hasImages = images && images.length > 0
+
+  // Duplicate slides for infinite scroll -- iff images exist
+  const slides = hasImages ? [...images, ...images] : []
 
   const [current, setCurrent] = useState(0)
   const [noTransition, setNoTransition] = useState(false)
 
   useEffect(() => {
+    if (!hasImages) return
+
     const interval = setInterval(() => {
       setCurrent((prev) => prev + 1)
     }, duration)
 
     return () => clearInterval(interval)
-  }, [duration])
+  }, [duration, hasImages])
 
   useEffect(() => {
+    if (!hasImages) return
+
     // When we reach the end of duplicated slides,
     // jump back to the original position without animation.
     if (current === images.length) {
@@ -43,9 +48,13 @@ export default function StatisticsCarousel({
         requestAnimationFrame(() => {
           setNoTransition(false)
         })
-      }, 700) // match transition duration
+      }, 700)
     }
-  }, [current, images.length])
+  }, [current, images?.length, hasImages])
+
+  if (!hasImages) {
+    return <div className="relative w-full h-72 overflow-hidden rounded-lg" />
+  }
 
   return (
     <div className="relative w-full h-72 overflow-hidden rounded-lg">
