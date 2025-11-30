@@ -19,7 +19,7 @@ const AboutSection = async () => {
         className='object-cover object-top'
       />
 
-      <div className='relative mx-auto flex h-full w-full max-w-7xl flex-col gap-y-20 py-10 sm:min-h-[600px] md:min-h-[800px] md:w-2/3 md:py-20 lg:min-h-[1000px] xl:min-h-[1200px] 2xl:min-h-[1400px]'>
+      <div className='relative mx-auto flex h-full w-full max-w-7xl flex-col gap-y-20 py-10 sm:min-h-[600px] md:min-h-[800px] md:w-2/3 md:py-20 lg:min-h-[1000px] xl:min-h-[1200px] 2xl:min-h-[1500px]'>
         <Card className='w-full rounded-lg border-none bg-[#F5E2A5]/95 shadow-md'>
           <CardHeader>
             <CardTitle className='text-2xl font-bold'>Mission</CardTitle>
