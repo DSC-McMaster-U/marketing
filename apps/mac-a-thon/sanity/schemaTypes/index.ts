@@ -4,6 +4,7 @@ import { faqSchema } from './faq'
 import { generalInfoSchema } from './generalInfo'
 import { sponsorSchema } from './sponsor'
 import { statisticSchema } from './statistic'
+import { teamMemberSchema } from './teamMember'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -12,5 +13,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     sponsorSchema,
     aboutSchema,
     statisticSchema,
+    teamMemberSchema,
   ],
 }

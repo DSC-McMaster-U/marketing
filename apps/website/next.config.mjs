@@ -11,6 +11,12 @@ const nextConfig = {
         ],
         domains: ['res.cloudinary.com', 'storage.googleapis.com'], // Added this to allow images from Cloudinary for events page (scraped from gdg site)
     },
+    reactStrictMode: true,
+    // Suppress warnings about localStorage during SSR
+    onDemandEntries: {
+        maxInactiveAge: 25 * 1000,
+        pagesBufferLength: 2,
+    },
 };
 
 export default nextConfig;

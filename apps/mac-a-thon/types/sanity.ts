@@ -59,3 +59,20 @@ export interface Statistic {
     }
   }
 }
+
+// Team Member Schema Type
+export interface TeamMember {
+  _id: string // Unique identifier for the document
+  _type: 'teamMember' // Document type
+  name: string // Full name of the team member
+  subteam: string // The subteam or role
+  emoji?: string // Optional emoji to display
+  photo?: {
+    _type: 'image' // Image type
+    asset: {
+      _ref: string // Reference to the image asset
+      _type: 'reference' // Reference type
+    }
+  }
+  order?: number // Display order
+}
