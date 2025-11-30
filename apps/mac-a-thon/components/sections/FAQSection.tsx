@@ -30,19 +30,19 @@ const FAQSection = async () => {
   return (
     <section
       id='faq'
-      className='relative w-full max-w-none overflow-x-clip py-16 max-md:min-h-[150vh] md:aspect-[1440/1052]'
+      className='relative w-full max-w-none overflow-x-clip py-16 max-[400px]:min-h-[150vh] min-[400px]:max-md:min-h-[120vh] md:max-xl:min-h-[80vh] xl:aspect-[1440/1052]'
     >
-      <FaqSectionBackground className='pointer-events-none absolute max-md:left-0 max-md:top-0 max-md:h-full max-md:min-w-max md:inset-0 md:h-full md:w-full' />
+      <FaqSectionBackground className='pointer-events-none absolute max-xl:left-0 max-xl:top-0 max-xl:h-full max-xl:w-[150%] xl:inset-0 xl:h-full xl:w-full' />
       <div className='container relative mx-auto max-w-3xl space-y-8 text-center'>
         <Accordion
           type='single'
           collapsible
-          className='space-y-2 pt-48 text-left max-md:pt-80'
+          className='space-y-2 pt-48 text-left max-lg:pt-32 max-md:pt-32'
         >
           {faqs.map((faq) => (
             <AccordionItem key={faq._id} value={faq._id}>
               <AccordionTrigger>
-                <h3 className='text-3xl md:text-5xl'>{faq.question}</h3>
+                <h3 className='text-2xl lg:text-5xl'>{faq.question}</h3>
               </AccordionTrigger>
               <AccordionContent>
                 <p>{faq.answer}</p>
