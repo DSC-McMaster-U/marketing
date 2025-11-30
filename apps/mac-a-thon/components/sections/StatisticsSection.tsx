@@ -1,50 +1,58 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
 import type { Statistic } from '@/types/sanity'
 import Image from 'next/image'
+import VerticalInfiniteCarousel from '../ui/vertical-infinite-carousel'
 
 const StatisticsSection = async () => {
-  const statistics: Statistic[] = await client.fetch(`*[_type == "statistic"]`)
+  const statistics: Statistic[] = await client.fetch(`
+    *[_type == "statistic"]
+  `)
 
-  if (!statistics?.length) return null
+  if (!statistics) return null
+
+  const images = statistics.flatMap((s) =>
+    s.image?.asset ? [urlFor(s.image.asset).url()] : [],
+  )
 
   return (
-    <section id='statistics' className='py-16'>
-      <div className='container mx-auto max-w-6xl space-y-8 text-center'>
-        <h2>Statistics</h2>
-        <Separator className='mx-auto w-16' />
-
-        <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-          {statistics.map((stat) => (
+    <section
+      id='statistics'
+      className='relative h-fit w-full max-w-none overflow-x-hidden pb-64'
+    >
+      <Image
+        src={'/assets/statistics-background.png'}
+        alt='Statistics Background'
+        fill
+        priority
+        className='object-cover object-center'
+      />
+      <div className='relative mx-auto flex w-full max-w-7xl flex-col items-center gap-x-20 gap-y-10 py-10 md:flex-row md:py-20'>
+        <div className='flex w-full flex-col gap-y-10'>
+          {statistics.map((item, idx) => (
             <Card
-              key={stat._id}
-              className='border-border/40 shadow-sm transition-transform hover:scale-[1.02] hover:shadow-md'
+              key={idx}
+              className='w-full rounded-lg border-none bg-[#6ecad9]/95 shadow-md'
             >
-              {stat.image?.asset && (
-                <div className='relative h-40 w-full overflow-hidden rounded-t-lg'>
-                  <Image
-                    src={urlFor(stat.image.asset).url()}
-                    alt={stat.title}
-                    fill
-                    className='object-cover'
-                  />
-                </div>
-              )}
-
               <CardHeader>
-                <CardTitle>
-                  <h4>{stat.title}</h4>
-                </CardTitle>
+                <CardTitle>{item.title}</CardTitle>
               </CardHeader>
-
-              <CardContent className='space-y-2'>
-                <h3>{stat.value}</h3>
-                {stat.description && <p>{stat.description}</p>}
+              <CardContent className='text-2xl font-bold'>
+                {item.value && item.value}
               </CardContent>
+              <CardFooter>{item.description && item.description}</CardFooter>
             </Card>
           ))}
+        </div>
+        <div className='w-full rounded-lg border-none bg-[#6ecad9]/95 p-1 shadow-md'>
+          <VerticalInfiniteCarousel images={images} />
         </div>
       </div>
     </section>
