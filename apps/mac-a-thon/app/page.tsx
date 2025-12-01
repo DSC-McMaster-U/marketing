@@ -3,6 +3,7 @@ import Header from '@/components/header'
 import AboutSection from '@/components/sections/AboutSection'
 import FAQSection from '@/components/sections/FAQSection'
 import HeroSection from '@/components/sections/HeroSection'
+import MeetTheTeamSection from '@/components/sections/MeetTheTeamSection'
 import SpeakersSection from '@/components/sections/SpeakersSection'
 import SponsorsSection from '@/components/sections/SponsorsSection'
 import StatisticsSection from '@/components/sections/StatisticsSection'
@@ -12,7 +13,7 @@ export const revalidate = 0
 
 export default function Home() {
   return (
-    <>
+    <div className='relative'>
       <Header />
       <main>
         <HeroSection />
@@ -21,8 +22,9 @@ export default function Home() {
         <StatisticsSection />
         <SponsorsSection />
         <FAQSection />
+        <MeetTheTeamSection />
       </main>
       <Footer />
-    </>
+    </div>
   )
 }

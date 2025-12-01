@@ -6,11 +6,16 @@ export const teamMemberSchema = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
-      title: 'Name',
+      name: 'firstName',
+      title: 'First Name',
       type: 'string',
-      description: 'Full name of the team member',
-      validation: (Rule) => Rule.required().error('Name is required'),
+      validation: (Rule) => Rule.required().error('First name is required'),
+    }),
+    defineField({
+      name: 'lastName',
+      title: 'Last Name',
+      type: 'string',
+      validation: (Rule) => Rule.required().error('Last name is required'),
     }),
     defineField({
       name: 'subteam',
@@ -19,12 +24,13 @@ export const teamMemberSchema = defineType({
       description:
         'The subteam or role (e.g. "Design", "Development", "Marketing")',
       validation: (Rule) => Rule.required().error('Subteam is required'),
-    }),
-    defineField({
-      name: 'emoji',
-      title: 'Emoji',
-      type: 'string',
-      description: 'Optional emoji to display (e.g. "🎨", "💻", "📱")',
+      options: {
+        list: [
+          { title: 'Marketing and Branding', value: 'marketingAndBranding' },
+          { title: 'Conferences', value: 'conferences' },
+          { title: 'Admin', value: 'admin' },
+        ],
+      },
     }),
     defineField({
       name: 'photo',
@@ -35,32 +41,5 @@ export const teamMemberSchema = defineType({
       },
       description: 'Profile photo of the team member',
     }),
-    defineField({
-      name: 'order',
-      title: 'Display Order',
-      type: 'number',
-      description:
-        'Order in which to display this member (lower numbers appear first)',
-      validation: (Rule) => Rule.min(0),
-    }),
-  ],
-  preview: {
-    select: {
-      title: 'name',
-      subtitle: 'subteam',
-      media: 'photo',
-    },
-  },
-  orderings: [
-    {
-      title: 'Order',
-      name: 'orderAsc',
-      by: [{ field: 'order', direction: 'asc' }],
-    },
-    {
-      title: 'Name',
-      name: 'nameAsc',
-      by: [{ field: 'name', direction: 'asc' }],
-    },
   ],
 })

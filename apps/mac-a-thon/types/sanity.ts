@@ -64,9 +64,9 @@ export interface Statistic {
 export interface TeamMember {
   _id: string // Unique identifier for the document
   _type: 'teamMember' // Document type
-  name: string // Full name of the team member
-  subteam: string // The subteam or role
-  emoji?: string // Optional emoji to display
+  firstName: string // First name of the team member
+  lastName: string // Last name of the team member
+  subteam: 'marketingAndBranding' | 'conferences' | 'admin' // Sub-team the member belongs to
   photo?: {
     _type: 'image' // Image type
     asset: {
