@@ -15,8 +15,7 @@ const TeamMarquee = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
   const TEAM_MAP: Record<string, string> = {
     marketingAndBranding: 'Marketing & Branding',
     admin: 'Admin',
-    operations: 'Operations',
-    development: 'Development',
+    conferences: 'Conferences',
   }
 
   return (
