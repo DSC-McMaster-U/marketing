@@ -23,6 +23,7 @@ export default function Header() {
     { title: 'Statistics', href: '#statistics' },
     { title: 'Sponsors', href: '#sponsors' },
     { title: 'FAQ', href: '#faq' },
+    { title: 'Team', href: '#team' },
   ]
 
   const socialMedia = [

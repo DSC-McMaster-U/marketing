@@ -9,11 +9,7 @@ import { urlFor } from '@/sanity/lib/image'
 import { TeamMember } from '@/types/sanity'
 import Image from 'next/image'
 
-export default function MeetTheTeamMarquee({
-  teamMembers,
-}: {
-  teamMembers: TeamMember[]
-}) {
+const TeamMarquee = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
   const items = [...teamMembers, ...teamMembers]
 
   const TEAM_MAP: Record<string, string> = {
@@ -66,3 +62,5 @@ export default function MeetTheTeamMarquee({
     </div>
   )
 }
+
+export default TeamMarquee
