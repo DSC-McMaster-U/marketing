@@ -14,8 +14,8 @@ const TeamSection = async () => {
       className='relative min-h-[400px] w-full max-w-none overflow-x-hidden bg-[#A3D8F4] p-0 md:min-h-[600px]'
     >
       <Image
-        src='/assets/meet-the-team-background.png'
-        alt='Meet the Team Background'
+        src='/assets/team-background.png'
+        alt='Team Background'
         fill
         priority
         className='object-cover object-top'

@@ -20,7 +20,7 @@ const FAQSection = async () => {
   if (!faqs?.length) return null
 
   return (
-    <section id='faq' className='py-16'>
+    <section id='faq' className='w-full max-w-none bg-[#f2d5aa]'>
       <div className='container mx-auto max-w-3xl space-y-8 text-center'>
         <h2>FAQ</h2>
         <Separator className='mx-auto w-16' />
