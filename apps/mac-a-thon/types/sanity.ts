@@ -69,3 +69,20 @@ export interface Statistic {
     }
   }
 }
+
+// Team Member Schema Type
+export interface TeamMember {
+  _id: string // Unique identifier for the document
+  _type: 'teamMember' // Document type
+  firstName: string // First name of the team member
+  lastName: string // Last name of the team member
+  subteam: 'marketingAndBranding' | 'conferences' | 'admin' // Sub-team the member belongs to
+  photo?: {
+    _type: 'image' // Image type
+    asset: {
+      _ref: string // Reference to the image asset
+      _type: 'reference' // Reference type
+    }
+  }
+  order?: number // Display order
+}

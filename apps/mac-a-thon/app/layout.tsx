@@ -1,4 +1,5 @@
 import '@/app/globals.css'
+import { TooltipProvider } from '@/components/ui/tooltip'
 import type { Metadata } from 'next'
 import { Original_Surfer, Work_Sans } from 'next/font/google'
 
@@ -35,10 +36,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      {/* Work Sans applies globally; Surfer available via Tailwind */}
-      <body className={`${worksans.variable} ${surfer.variable} font-body`}>
-        {children}
-      </body>
+      <TooltipProvider delayDuration={200}>
+        {/* Work Sans applies globally; Surfer available via Tailwind */}
+        <body className={`${worksans.variable} ${surfer.variable} font-body`}>
+          {children}
+        </body>
+      </TooltipProvider>
     </html>
   )
 }

@@ -34,7 +34,7 @@ const StatisticsSection = async () => {
         priority
         className='object-cover object-center'
       />
-      <div className='relative mx-auto flex w-full max-w-7xl flex-col items-center gap-x-20 gap-y-10 py-10 sm:min-h-[200px] md:min-h-[400px] lg:min-h-[600px] xl:min-h-[800px] 2xl:min-h-[1000px]'>
+      <div className='relative mx-auto flex w-full max-w-7xl flex-col items-center gap-x-20 gap-y-10 py-10 sm:min-h-[200px] md:min-h-[400px] md:flex-row lg:min-h-[600px] xl:min-h-[800px] 2xl:min-h-[1000px]'>
         <div className='flex w-full flex-col gap-y-10'>
           {statistics.map((item, idx) => (
             <Card
