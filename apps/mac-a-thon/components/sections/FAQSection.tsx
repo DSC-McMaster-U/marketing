@@ -30,7 +30,7 @@ const FAQSection = async () => {
   return (
     <section
       id='faq'
-      className='relative -mt-32 w-full max-w-none overflow-x-clip py-16 max-[400px]:min-h-[150vh] min-[400px]:max-md:min-h-[120vh] md:max-xl:min-h-[80vh] xl:aspect-[1440/1052]'
+      className='relative -mt-44 w-full max-w-none overflow-x-clip py-16 max-[400px]:min-h-[150vh] min-[400px]:max-md:min-h-[120vh] md:max-xl:min-h-[80vh] xl:aspect-[1440/1052]'
     >
       <FaqSectionBackground className='pointer-events-none absolute max-xl:left-0 max-xl:top-0 max-xl:h-full max-xl:w-[150%] xl:inset-0 xl:h-full xl:w-full' />
       <div className='container relative mx-auto max-w-3xl space-y-8 text-center'>
