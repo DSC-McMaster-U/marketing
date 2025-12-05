@@ -47,16 +47,22 @@ const SponsorsSection = async () => {
   const MOBILE_H = 600
 
   const mobilePxPositions = [
-    { top: 55, left: 100, w: 180, h: 30, rotate: -5 }, // plank 1
-    { top: 120, left: 100, w: 190, h: 70, rotate: -3 }, // plank 2
-    { top: 183, left: 105, w: 150, h: 50, rotate: 5 }, // plank 3
-    { top: 245, left: 110, w: 130, h: 50, rotate: 3 }, // plank 4
-    { top: 337, left: 125, w: 110, h: 30, rotate: -5 }, // plank 5
-    { top: 420, left: 85, w: 180, h: 50, rotate: 3 }, // plank 6
-    { top: 480, left: 80, w: 190, h: 70, rotate: -3 }, // plank 7
+    { sign: 1, top: 55, left: 100, w: 180, h: 30, rotate: -5 }, // plank 1
+    { sign: 1, top: 120, left: 100, w: 190, h: 70, rotate: -3 }, // plank 2
+    { sign: 1, top: 183, left: 105, w: 150, h: 50, rotate: 5 }, // plank 3
+    { sign: 1, top: 245, left: 110, w: 130, h: 50, rotate: 3 }, // plank 4
+    { sign: 1, top: 337, left: 125, w: 110, h: 30, rotate: -5 }, // plank 5
+    { sign: 1, top: 420, left: 85, w: 180, h: 50, rotate: 3 }, // plank 6
+    { sign: 1, top: 480, left: 80, w: 190, h: 70, rotate: -3 }, // plank 7
+    //Sign 2
+    { sign: 2, top: 245, left: 110, w: 130, h: 50, rotate: 3 }, // plank 4
+    { sign: 2, top: 337, left: 125, w: 110, h: 30, rotate: -5 }, // plank 5
+    { sign: 2, top: 430, left: 85, w: 180, h: 70, rotate: 3 }, // plank 6
+    { sign: 2, top: 480, left: 80, w: 190, h: 70, rotate: -3 }, // plank 7
   ]
 
   const mobilePositions = mobilePxPositions.map((p) => ({
+    sign: p.sign,
     top: `${(p.top / MOBILE_H) * 100}%`,
     left: `${(p.left / MOBILE_W) * 100}%`,
     width: `${(p.w / MOBILE_W) * 100}%`,
@@ -111,47 +117,52 @@ const SponsorsSection = async () => {
         })}
       </div>
       {/* Mobile layout */}
-      <div className='flex w-full flex-col items-center gap-6 md:hidden'>
-        {/*Sign as base image*/}
-        <div className='-mt-62 relative mx-auto aspect-[70/194] w-full max-w-[1500px]'>
-          <Image
-            src='/assets/sponsor-sign.png' // your mobile sign image
-            alt='Sponsor sign'
-            fill
-            priority
-            className='pointer-events-none select-none'
-          />
-
-          {sponsors.map((sponsor, index) => {
-            const pos = mobilePositions[index] // define separately for mobile
-            if (!pos) return null
-            return (
-              <Link
-                key={sponsor._id}
-                href={sponsor.website ?? '#'}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label={`Visit ${sponsor.name}`}
-                className='absolute'
-                style={{
-                  top: pos.top,
-                  left: pos.left,
-                  width: pos.width,
-                  height: pos.height,
-                  transform: `rotate(${pos.rotate}deg)`,
-                }}
-              >
-                <Image
-                  src={urlFor(sponsor.logo.asset).url()}
-                  alt={sponsor.name}
-                  width={300}
-                  height={100}
-                  className='mx-auto object-contain'
-                />
-              </Link>
-            )
-          })}
-        </div>
+      <div className='flex w-full flex-row items-center justify-center gap-2 md:hidden'>
+        {[1, 2].map((signNumber) => (
+          <div
+            key={signNumber}
+            className='relative mx-auto aspect-[70/194] w-full max-w-[1500px]'
+          >
+            <Image
+              src={`/assets/sponsor-sign-${signNumber}.png`}
+              alt={`Sponsor sign ${signNumber}`}
+              fill
+              priority
+              className='pointer-events-none select-none'
+            />
+            {sponsors
+              .filter((_, i) => mobilePositions[i]?.sign === signNumber)
+              .map((sponsor, i) => {
+                const pos = mobilePositions[i]
+                if (!pos) return null
+                return (
+                  <Link
+                    key={sponsor._id}
+                    href={sponsor.website ?? '#'}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    aria-label={`Visit ${sponsor.name}`}
+                    className='absolute'
+                    style={{
+                      top: pos.top,
+                      left: pos.left,
+                      width: pos.width,
+                      height: pos.height,
+                      transform: `rotate(${pos.rotate}deg)`,
+                    }}
+                  >
+                    <Image
+                      src={urlFor(sponsor.logo.asset).url()}
+                      alt={sponsor.name}
+                      width={300}
+                      height={100}
+                      className='mx-auto object-contain'
+                    />
+                  </Link>
+                )
+              })}
+          </div>
+        ))}
       </div>
     </section>
   )
