@@ -28,6 +28,11 @@ const SponsorsSection = async () => {
     { top: 265, left: 850, w: 190, h: 70, rotate: -5 }, // sign 2 plank 1
     { top: 540, left: 870, w: 180, h: 70, rotate: -5 }, // sign 2 plank 2
     { top: 400, left: 870, w: 190, h: 70, rotate: -5 }, // sign 2 plank 3
+    { top: 520, left: 375, w: 160, h: 50, rotate: 0 }, // sign 1 plank 4
+    { top: 625, left: 345, w: 210, h: 90, rotate: -5 }, // sign 1 plank 5
+    { top: 765, left: 360, w: 180, h: 70, rotate: 4 }, // sign 1 plank 6
+    { top: 880, left: 350, w: 190, h: 70, rotate: -5 }, // sign 1 plank 7
+    { top: 670, left: 880, w: 180, h: 70, rotate: -5 }, // sign 2 plank 4
   ]
 
   const positions = pxPositions.slice(0, sponsors.length).map((p) => ({
@@ -43,11 +48,12 @@ const SponsorsSection = async () => {
 
   const mobilePxPositions = [
     { top: 55, left: 100, w: 180, h: 30, rotate: -5 }, // plank 1
-    { top: 245, left: 110, w: 130, h: 50, rotate: 3 }, // plank 2
+    { top: 120, left: 100, w: 190, h: 70, rotate: -3 }, // plank 2
     { top: 183, left: 105, w: 150, h: 50, rotate: 5 }, // plank 3
-    { top: 337, left: 125, w: 110, h: 30, rotate: -5 }, // plank 1
-    { top: 420, left: 85, w: 180, h: 50, rotate: 3 }, // plank 2
-    { top: 120, left: 100, w: 190, h: 70, rotate: -3 }, // plank 3
+    { top: 245, left: 110, w: 130, h: 50, rotate: 3 }, // plank 4
+    { top: 337, left: 125, w: 110, h: 30, rotate: -5 }, // plank 5
+    { top: 420, left: 85, w: 180, h: 50, rotate: 3 }, // plank 6
+    { top: 480, left: 80, w: 190, h: 70, rotate: -3 }, // plank 7
   ]
 
   const mobilePositions = mobilePxPositions.map((p) => ({
