@@ -6,12 +6,13 @@ import Link from 'next/link'
 
 const SponsorsSection = async () => {
   const sponsors: Sponsor[] = await client.fetch(`
-    *[_type == "sponsor"]{
+    *[_type == "sponsor"] | order(order asc){
       _id,
       name,
       logo,
       website,
-      tier
+      tier,
+      order
     }
   `)
 

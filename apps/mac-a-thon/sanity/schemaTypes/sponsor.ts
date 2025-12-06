@@ -43,5 +43,16 @@ export const sponsorSchema = defineType({
           scheme: ['http', 'https'],
         }).error('Valid URL required'),
     }),
+    defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description: 'The order in which the sponsor should be displayed',
+      validation: (Rule) =>
+        Rule.required()
+          .integer()
+          .min(0)
+          .error('Order must be a non-negative integer'),
+    }),
   ],
 })

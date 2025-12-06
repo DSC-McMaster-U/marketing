@@ -36,6 +36,7 @@ export interface Sponsor {
     }
   }
   website: string // The website of the sponsor
+  order: number // Display order of the sponsor
 }
 
 // About Schema Type
