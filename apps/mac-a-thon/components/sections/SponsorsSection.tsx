@@ -125,16 +125,19 @@ const SponsorsSection = async () => {
             className='relative mx-auto aspect-[70/194] w-full max-w-[1500px]'
           >
             <Image
-              src={`/assets/sponsor-sign-${signNumber}.png`}
+              src='/assets/sponsor-sign.png' // Use the existing asset for both signs
               alt={`Sponsor sign ${signNumber}`}
               fill
               priority
               className='pointer-events-none select-none'
             />
             {sponsors
-              .filter((_, i) => mobilePositions[i]?.sign === signNumber)
-              .map((sponsor, i) => {
-                const pos = mobilePositions[i]
+              .map((sponsor, index) => ({
+                sponsor,
+                pos: mobilePositions[index],
+              }))
+              .filter(({ pos }) => pos?.sign === signNumber)
+              .map(({ sponsor, pos }) => {
                 if (!pos) return null
                 return (
                   <Link
