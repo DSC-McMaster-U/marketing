@@ -32,9 +32,12 @@ export const metadata: Metadata = {
 }
 
 const HeroSection = async () => {
-  const generalInfo: GeneralInfo = await client.fetch(
-    `*[_type == 'generalInfo'][0]`,
-  )
+  let generalInfo: GeneralInfo | null = null
+  try {
+    generalInfo = await client.fetch(`*[_type == 'generalInfo'][0]`)
+  } catch (error) {
+    console.warn('Failed to fetch generalInfo:', error)
+  }
 
   if (!generalInfo) return null
 
@@ -80,8 +83,15 @@ const HeroSection = async () => {
 }
 
 const AboutUsSection = async () => {
-  const about: About = await client.fetch(`*[_type == 'about'][0]`)
-  const sponsors: Sponsor[] = await client.fetch(`*[_type == 'sponsor']`)
+  let about: About | null = null
+  let sponsors: Sponsor[] = []
+
+  try {
+    about = await client.fetch(`*[_type == 'about'][0]`)
+    sponsors = await client.fetch(`*[_type == 'sponsor']`)
+  } catch (error) {
+    console.warn('Failed to fetch about/sponsors:', error)
+  }
 
   if (!about) return null
 
@@ -154,9 +164,12 @@ const EventsSection = async () => {
 }
 
 const NewslettersSection = async () => {
-  const newsletters: Newsletter[] = await client.fetch(
-    `*[_type == "newsletter"]`, // Fetch all newsletters first
-  )
+  let newsletters: Newsletter[] = []
+  try {
+    newsletters = await client.fetch(`*[_type == "newsletter"]`)
+  } catch (error) {
+    console.warn('Failed to fetch newsletters:', error)
+  }
 
   if (!newsletters) return null
 
@@ -211,7 +224,12 @@ const NewslettersSection = async () => {
 }
 
 const TeamSection: FC = async () => {
-  const team: Team | null = await client.fetch(`*[_type == "team"][0]`)
+  let team: Team | null = null
+  try {
+    team = await client.fetch(`*[_type == "team"][0]`)
+  } catch (error) {
+    console.warn('Failed to fetch team:', error)
+  }
 
   if (!team) return null
 
