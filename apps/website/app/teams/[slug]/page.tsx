@@ -9,13 +9,14 @@ export async function generateStaticParams() {
 }
 
 interface TeamPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-const TeamPage = ({ params }: TeamPageProps) => {
-  const team = getTeamData(params.slug)
+const TeamPage = async ({ params }: TeamPageProps) => {
+  const resolvedParams = await params
+  const team = getTeamData(resolvedParams.slug)
 
   if (!team) {
     notFound()

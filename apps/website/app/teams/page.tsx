@@ -26,7 +26,7 @@ const TeamsOverview = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="mb-24 flex flex-col gap-y-16 lg:gap-y-24">
         <AnimatedHero
           id="teams-overview-hero"
           className="mx-auto mt-8 flex max-w-7xl flex-col items-center gap-y-8 px-4 py-8 sm:px-6 sm:py-12 md:flex-row md:gap-y-0 lg:px-8 lg:py-16 xl:py-28"

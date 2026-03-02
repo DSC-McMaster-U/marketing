@@ -9,7 +9,7 @@ const nextConfig = {
                 pathname: '/**', // Use this to match all paths under the domain
             },
         ],
-        domains: ['res.cloudinary.com', 'storage.googleapis.com'], // Added this to allow images from Cloudinary for events page (scraped from gdg site)
+        domains: ['res.cloudinary.com', 'storage.googleapis.com', 'github.com', 'raw.githubusercontent.com', 'img.shields.io'], // Added this to allow images from Cloudinary for events page (scraped from gdg site)
     },
 };
 

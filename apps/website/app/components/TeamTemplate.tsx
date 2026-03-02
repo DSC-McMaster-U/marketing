@@ -4,7 +4,9 @@ import { FiCalendar, FiGithub, FiInstagram, FiLink, FiLinkedin, FiMapPin } from 
 import { TeamData } from '../lib/teamData'
 import AnimatedHero from './AnimatedHero'
 import Card from './Card'
+import HackathonTeamSection from './HackathonTeamSection'
 import MemberCard from './MemberCard'
+import OpenSourceProjectsSection from './OpenSourceProjectsSection'
 import Pill from './Pill'
 import SectionCard from './SectionCard'
 
@@ -142,6 +144,16 @@ const TeamTemplate = ({ team }: TeamTemplateProps) => {
             })}
           </div>
         </SectionCard>
+      )}
+
+      {/* Conditionally render Hackathon Team Section for Conferences team */}
+      {team.id === 'conferences' && (
+        <HackathonTeamSection />
+      )}
+
+      {/* Conditionally render Open Source Projects Section for Open Source team */}
+      {team.id === 'open-source' && (
+        <OpenSourceProjectsSection />
       )}
 
       {/* Team Members Section */}
