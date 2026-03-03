@@ -95,11 +95,11 @@ const HackathonTeamSection = () => {
         title="Impact"
         description="Stats"
       >
-        <div className="flex flex-wrap justify-center gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8 auto-rows-fr w-full max-w-7xl mx-auto">
           {/* Stat 1 */}
-          <Card className="!p-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
-            <div className="flex flex-col items-center justify-start text-center w-full h-full pb-8">
-              <div className="mb-6 aspect-[4/3] w-full overflow-hidden relative">
+          <Card className="!p-0 h-full w-full md:col-span-2">
+            <div className="flex flex-col items-center justify-start text-center w-full h-full pb-10">
+              <div className="mb-8 aspect-[4/3] w-full overflow-hidden relative">
                 <Image
                   src="/images/hackers.jpg"
                   alt="Hackers at Mac-a-Thon"
@@ -108,10 +108,10 @@ const HackathonTeamSection = () => {
                 />
               </div>
               <div className="px-6 flex flex-col justify-end flex-grow">
-                <div className="text-4xl md:text-5xl font-black text-black dark:text-white mb-2">
+                <div className="text-5xl md:text-6xl font-black text-black dark:text-white mb-3">
                   800+
                 </div>
-                <div className="text-neutral-500 uppercase tracking-widest text-sm font-semibold">
+                <div className="text-neutral-500 uppercase tracking-widest text-base font-semibold">
                   applicants or<br />250+ hackers
                 </div>
               </div>
@@ -119,7 +119,7 @@ const HackathonTeamSection = () => {
           </Card>
 
           {/* Stat 2 */}
-          <Card className="!p-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
+          <Card className="!p-0 h-full w-full md:col-span-2">
             <div className="flex flex-col items-center justify-start text-center w-full h-full pb-8">
               <div className="mb-6 aspect-[4/3] w-full overflow-hidden relative">
                 <Image
@@ -130,10 +130,10 @@ const HackathonTeamSection = () => {
                 />
               </div>
               <div className="px-6 flex flex-col justify-end flex-grow">
-                <div className="text-4xl md:text-5xl font-black text-black dark:text-white mb-2">
+                <div className="text-5xl md:text-6xl font-black text-black dark:text-white mb-3">
                   60+
                 </div>
-                <div className="text-neutral-500 uppercase tracking-widest text-sm font-semibold">
+                <div className="text-neutral-500 uppercase tracking-widest text-base font-semibold">
                   projects
                 </div>
               </div>
@@ -141,9 +141,9 @@ const HackathonTeamSection = () => {
           </Card>
 
           {/* Stat 3 */}
-          <Card className="!p-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
-            <div className="flex flex-col items-center justify-start text-center w-full h-full pb-8">
-              <div className="mb-6 aspect-[4/3] w-full overflow-hidden relative">
+          <Card className="!p-0 h-full w-full md:col-span-2 md:col-start-2 lg:col-start-5">
+            <div className="flex flex-col items-center justify-start text-center w-full h-full pb-10">
+              <div className="mb-8 aspect-[4/3] w-full overflow-hidden relative">
                 <Image
                   src="/images/hacking-in-progress.jpg"
                   alt="Hacking in Progress at Mac-a-Thon"
@@ -152,10 +152,10 @@ const HackathonTeamSection = () => {
                 />
               </div>
               <div className="px-6 flex flex-col justify-end flex-grow">
-                <div className="text-4xl md:text-5xl font-black text-black dark:text-white mb-2">
+                <div className="text-5xl md:text-6xl font-black text-black dark:text-white mb-3">
                   48
                 </div>
-                <div className="text-neutral-500 uppercase tracking-widest text-sm font-semibold">
+                <div className="text-neutral-500 uppercase tracking-widest text-base font-semibold">
                   hours of hacking<br />and innovation
                 </div>
               </div>
@@ -163,9 +163,9 @@ const HackathonTeamSection = () => {
           </Card>
 
           {/* Stat 4 */}
-          <Card className="!p-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
-            <div className="flex flex-col items-center justify-start text-center w-full h-full pb-8">
-              <div className="mb-6 aspect-[4/3] w-full overflow-hidden relative">
+          <Card className="!p-0 h-full w-full md:col-span-2 lg:col-start-2">
+            <div className="flex flex-col items-center justify-start text-center w-full h-full pb-10">
+              <div className="mb-8 aspect-[4/3] w-full overflow-hidden relative">
                 <Image
                   src="/images/workshops-stat.jpg"
                   alt="Workshops at Mac-a-Thon"
@@ -174,10 +174,10 @@ const HackathonTeamSection = () => {
                 />
               </div>
               <div className="px-6 flex flex-col justify-end flex-grow">
-                <div className="text-4xl md:text-5xl font-black text-black dark:text-white mb-2">
+                <div className="text-5xl md:text-6xl font-black text-black dark:text-white mb-3">
                   10
                 </div>
-                <div className="text-neutral-500 uppercase tracking-widest text-sm font-semibold">
+                <div className="text-neutral-500 uppercase tracking-widest text-base font-semibold">
                   workshops
                 </div>
               </div>
@@ -185,9 +185,9 @@ const HackathonTeamSection = () => {
           </Card>
 
           {/* Stat 5 */}
-          <Card className="!p-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
-            <div className="flex flex-col items-center justify-start text-center w-full h-full pb-8">
-              <div className="mb-6 aspect-[4/3] w-full overflow-hidden relative">
+          <Card className="!p-0 h-full w-full md:col-span-2">
+            <div className="flex flex-col items-center justify-start text-center w-full h-full pb-10">
+              <div className="mb-8 aspect-[4/3] w-full overflow-hidden relative">
                 <Image
                   src="/images/prizes.jpg"
                   alt="Prize Winner at Mac-a-Thon"
@@ -196,10 +196,10 @@ const HackathonTeamSection = () => {
                 />
               </div>
               <div className="px-6 flex flex-col justify-end flex-grow">
-                <div className="text-4xl md:text-5xl font-black text-black dark:text-white mb-2">
+                <div className="text-5xl md:text-6xl font-black text-black dark:text-white mb-3">
                   15+
                 </div>
-                <div className="text-neutral-500 uppercase tracking-widest text-sm font-semibold">
+                <div className="text-neutral-500 uppercase tracking-widest text-base font-semibold">
                   prize tiers and<br />giveaways
                 </div>
               </div>

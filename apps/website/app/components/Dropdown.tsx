@@ -35,10 +35,11 @@ export const DropdownItem = ({
 
 interface DropdownProps {
   name: string
+  align?: 'left' | 'right'
   children?: React.ReactNode
 }
 
-const Dropdown = ({ name, children }: DropdownProps) => {
+const Dropdown = ({ name, align = 'left', children }: DropdownProps) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false)
 
   const handleToggle = () => {
@@ -66,7 +67,7 @@ const Dropdown = ({ name, children }: DropdownProps) => {
       </button>
 
       {isDropdownOpen && (
-        <div className='bg-white-01 dark:bg-black-01 absolute left-0 rounded-lg drop-shadow'>
+        <div className={`bg-white-01 dark:bg-black-01 absolute ${align === 'right' ? 'right-0' : 'left-0'} rounded-lg drop-shadow`}>
           {children}
         </div>
       )}

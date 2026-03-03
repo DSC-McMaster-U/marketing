@@ -411,7 +411,7 @@ const TeamSection: FC = async () => {
           )
         })}
       </div>
-      <Link href={'/team'}>
+      <Link href={'/teams'}>
         <ChevronArrowButton className='dark:bg-white-00 bg-black-00 dark:text-black-00 text-white-00 dark:border-black-00 border-white-00 border-2'>
           <span className='font-semibold'>Meet Our Team</span>
         </ChevronArrowButton>

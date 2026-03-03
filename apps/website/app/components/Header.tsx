@@ -12,6 +12,7 @@ import { FiCalendar, FiCode, FiMenu, FiStar, FiUsers, FiVolume2, FiX } from 'rea
 
 interface DropdownMenuProps {
   name: string
+  align?: 'left' | 'right'
   links: {
     href: string
     label: string
@@ -20,8 +21,8 @@ interface DropdownMenuProps {
   }[]
 }
 
-const DropdownMenu = ({ name, links }: DropdownMenuProps) => (
-  <Dropdown name={name}>
+const DropdownMenu = ({ name, align = 'left', links }: DropdownMenuProps) => (
+  <Dropdown name={name} align={align}>
     <ul className='flex flex-col'>
       {links.map((link, index) => (
         <li key={index}>
@@ -101,7 +102,6 @@ const Header = () => {
       ],
     },
     { name: 'Newsletters', href: '/newsletters' },
-    { name: 'Newsletters', href: '/newsletters' },
     {
       name: 'Teams',
       links: [
@@ -179,7 +179,7 @@ const Header = () => {
                   <div
                     className={`${pathname === '/events' ? 'dark:bg-black-03 rounded-2xl bg-white' : ''}`}
                   >
-                    <DropdownMenu name={navLink.name} links={navLink.links} />
+                    <DropdownMenu name={navLink.name} links={navLink.links} align={navLink.name === 'Teams' ? 'right' : 'left'} />
                   </div>
                 ) : (
                   <Link
