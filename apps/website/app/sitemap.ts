@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     (event) => event.slug,
   )
 
-  const staticRoutes = ['', '/team', '/newsletter', '/events']
+  const staticRoutes = ['', '/teams', '/newsletters', '/events']
 
   const dynamicRoutes = [
     ...newsletters.map((slug) => `/newsletter/${slug}`),
