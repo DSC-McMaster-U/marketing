@@ -1,0 +1,44 @@
+
+> dev:website
+> turbo run dev --filter=website
+
+turbo 2.5.6
+
+• Packages in scope: website
+• Running dev in 1 packages
+• Remote caching disabled
+website:dev: cache bypass, force executing a4da27bdf545f8a8
+website:dev: 
+website:dev: > website@0.1.0 dev /Users/hetarthparikh/Python/marketing/apps/website
+website:dev: > next dev
+website:dev: 
+website:dev:    ▲ Next.js 15.3.0
+website:dev:    - Local:        http://localhost:3000
+website:dev:    - Network:      http://172.18.70.31:3000
+website:dev:    - Environments: .env.local
+website:dev: 
+website:dev:  ✓ Starting...
+website:dev:  ✓ Ready in 1213ms
+website:dev:  ○ Compiling /_not-found ...
+website:dev:  ✓ Compiled /_not-found in 1471ms (664 modules)
+website:dev:  ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+website:dev:  GET /_next/static/webpack/09ad19de83e8cc63.webpack.hot-update.json 404 in 1611ms
+website:dev:  ○ Compiling /teams/[slug] ...
+website:dev:  ✓ Compiled /teams/[slug] in 2.7s (1575 modules)
+website:dev:  GET /teams/community 200 in 2636ms
+website:dev:  ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+website:dev:  GET /_next/static/webpack/09ad19de83e8cc63.webpack.hot-update.json 404 in 2791ms
+website:dev:  GET /teams/community 200 in 607ms
+website:dev:  ⚠ The "images.domains" configuration is deprecated. Please use "images.remotePatterns" configuration instead.
+website:dev:  GET /teams/admin 200 in 107ms
+website:dev:  GET /teams/admin 200 in 20ms
+website:dev:  GET /teams/marketing 200 in 33ms
+website:dev:  GET /teams/admin 200 in 16ms
+website:dev:  GET /teams/conferences 200 in 44ms
+website:dev:  GET /teams/marketing 200 in 20ms
+website:dev:  GET /teams/admin 200 in 17ms
+website:dev:  ✓ Compiled in 709ms (1585 modules)
+website:dev:  GET /teams/community 200 in 93ms
+website:dev:  GET /teams/admin 200 in 93ms
+website:dev: [?25h
+ ERROR  run failed: command  exited (1)

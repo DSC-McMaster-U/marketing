@@ -8,10 +8,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { FiCalendar, FiMenu, FiStar, FiX } from 'react-icons/fi'
+import { FiCalendar, FiCode, FiMenu, FiStar, FiUsers, FiVolume2, FiX } from 'react-icons/fi'
 
 interface DropdownMenuProps {
   name: string
+  align?: 'left' | 'right'
   links: {
     href: string
     label: string
@@ -20,8 +21,8 @@ interface DropdownMenuProps {
   }[]
 }
 
-const DropdownMenu = ({ name, links }: DropdownMenuProps) => (
-  <Dropdown name={name}>
+const DropdownMenu = ({ name, align = 'left', links }: DropdownMenuProps) => (
+  <Dropdown name={name} align={align}>
     <ul className='flex flex-col'>
       {links.map((link, index) => (
         <li key={index}>
@@ -101,7 +102,41 @@ const Header = () => {
       ],
     },
     { name: 'Newsletters', href: '/newsletters' },
-    { name: 'Team', href: '/team' },
+    {
+      name: 'Teams',
+      links: [
+        {
+          href: '/teams',
+          label: 'Overview',
+          description: 'Meet our sub-teams',
+          icon: <FiStar />, // Reusing icon for now
+        },
+        {
+          href: '/teams/open-source',
+          label: 'Open Source',
+          description: 'Building for the community',
+          icon: <FiCode />,
+        },
+        {
+          href: '/teams/conferences',
+          label: 'Conferences',
+          description: 'Mac-a-thon and more',
+          icon: <FiCalendar />,
+        },
+        {
+          href: '/teams/community',
+          label: 'Community',
+          description: 'Workshops and socials',
+          icon: <FiUsers />,
+        },
+        {
+          href: '/teams/marketing',
+          label: 'Marketing',
+          description: 'Spreading the word',
+          icon: <FiVolume2 />, // Replaced FiMegaphone
+        },
+      ],
+    },
   ]
 
   return (
@@ -144,7 +179,7 @@ const Header = () => {
                   <div
                     className={`${pathname === '/events' ? 'dark:bg-black-03 rounded-2xl bg-white' : ''}`}
                   >
-                    <DropdownMenu name={navLink.name} links={navLink.links} />
+                    <DropdownMenu name={navLink.name} links={navLink.links} align={navLink.name === 'Teams' ? 'right' : 'left'} />
                   </div>
                 ) : (
                   <Link
