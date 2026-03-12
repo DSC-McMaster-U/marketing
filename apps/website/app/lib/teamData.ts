@@ -1,3 +1,4 @@
+// TODO: Migrate all static content management to Sanity CMS in the future to allow non-technical members to tweak content as needed.
 import { ReactNode } from 'react'
 
 export interface Member {

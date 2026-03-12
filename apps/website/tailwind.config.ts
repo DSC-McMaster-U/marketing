@@ -55,6 +55,10 @@ export default {
       translate: ['group-hover', 'hover-none'], // Extend translate variant to support hover-none
     },
   },
+  safelist: [
+    { pattern: /^bg-(blue|red|green|yellow|purple)-500\/10$/ },
+    { pattern: /^text-(blue|red|green|yellow|purple)-500$/ },
+  ],
   darkMode: 'media',
   plugins: [],
 } satisfies Config

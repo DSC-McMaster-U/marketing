@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation'
-import AdminTeamContent from '../../components/AdminTeamContent'
 import CommunityTeamContent from '../../components/CommunityTeamContent'
 import Header from '../../components/Header'
 import TeamTemplate from '../../components/TeamTemplate'
@@ -30,8 +29,6 @@ const TeamPage = async ({ params }: TeamPageProps) => {
       <main>
         {resolvedParams.slug === 'community' ? (
           <CommunityTeamContent />
-        ) : resolvedParams.slug === 'admin' ? (
-          <AdminTeamContent />
         ) : (
           <TeamTemplate team={team} />
         )}
