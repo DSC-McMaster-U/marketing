@@ -8,6 +8,8 @@ import {
   FaNewspaper,
   FaUsers,
 } from 'react-icons/fa'
+import AnimatedHero from './AnimatedHero'
+import Pill from './Pill'
 
 export default function CommunityTeamContent() {
   const containerVariants = {
@@ -84,41 +86,26 @@ export default function CommunityTeamContent() {
   ]
 
   return (
-    <div className='mt-16 min-h-screen bg-black px-4 py-20 font-sans text-white sm:px-6 lg:px-8'>
-      <div className='mx-auto max-w-7xl space-y-24'>
-        {/* Hero Section */}
-        <motion.div
-          className='space-y-8 text-center'
-          initial='hidden'
-          animate='visible'
-          variants={containerVariants}
-        >
-          <motion.h1
-            variants={itemVariants}
-            className='bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-5xl font-extrabold text-transparent md:text-7xl'
-          >
-            Community Team
-          </motion.h1>
-          <motion.p
-            variants={itemVariants}
-            className='mx-auto max-w-4xl text-xl leading-relaxed text-gray-300 md:text-2xl'
-          >
-            The Community Team at GDG McMaster focuses on building welcoming,
-            high-impact spaces where students can learn practical skills,
-            connect with peers, and feel supported throughout the school year.
-          </motion.p>
-          <motion.p
-            variants={itemVariants}
-            className='mx-auto max-w-4xl text-lg text-gray-400'
-          >
-            We design student-first events that help McMaster students grow both
-            technically and professionally, especially during recruiting season
-            and exam periods. Our goal is to make tech feel accessible,
-            collaborative, and community-driven for everyone, regardless of
-            experience level.
-          </motion.p>
-        </motion.div>
+    <div className='flex flex-col gap-y-8'>
+      {/* Hero Section */}
+      <AnimatedHero
+        id='community-hero'
+        className='mx-auto mt-8 flex max-w-7xl flex-col items-center gap-y-8 px-4 py-8 sm:px-6 sm:py-12 md:flex-row md:gap-y-0 lg:px-8 lg:py-16 xl:py-28'
+      >
+        <div className='flex w-full flex-col items-center'>
+          <div className='flex max-w-2xl flex-col items-center justify-center gap-y-4 text-center'>
+            <Pill className='bg-green-500'>Community Team</Pill>
+            <h1>Fostering connections through workshops and socials.</h1>
+            <p className='text-lg text-neutral-600 dark:text-neutral-400'>
+              The Community Team at GDG McMaster focuses on building welcoming,
+              high-impact spaces where students can learn practical skills,
+              connect with peers, and feel supported throughout the school year.
+            </p>
+          </div>
+        </div>
+      </AnimatedHero>
 
+      <div className='mx-auto max-w-7xl space-y-24 px-4 sm:px-6 lg:px-8'>
         {/* Stats Section */}
         <motion.div
           initial='hidden'
@@ -131,12 +118,14 @@ export default function CommunityTeamContent() {
             <motion.div
               key={i}
               variants={itemVariants}
-              className='rounded-2xl border border-gray-800 bg-gray-900/50 p-6 text-center transition-colors hover:bg-gray-800/50'
+              className='rounded-2xl border border-neutral-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-green-500/50 hover:shadow-md dark:border-neutral-800 dark:bg-[#111111] dark:hover:border-green-500/50'
             >
-              <div className='mb-2 text-3xl font-bold text-green-400'>
+              <div className='mb-2 text-3xl font-bold text-green-500 dark:text-green-400'>
                 {stat.value}
               </div>
-              <div className='text-sm text-gray-400'>{stat.label}</div>
+              <div className='text-sm font-medium text-neutral-600 dark:text-gray-400'>
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -150,8 +139,10 @@ export default function CommunityTeamContent() {
           className='space-y-12'
         >
           <div className='text-center'>
-            <h2 className='mb-6 text-4xl font-bold'>What We Run</h2>
-            <p className='mx-auto max-w-3xl text-xl text-gray-400'>
+            <h2 className='mb-6 text-3xl font-bold text-black sm:text-4xl dark:text-white'>
+              What We Run
+            </h2>
+            <p className='mx-auto max-w-3xl text-lg text-neutral-600 sm:text-xl dark:text-gray-400'>
               We organize 4+ events per term, centered around career
               development, technical skill-building, and meaningful
               collaboration. Our events are designed around what students
@@ -164,13 +155,15 @@ export default function CommunityTeamContent() {
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className='group rounded-3xl border border-gray-800 bg-gradient-to-b from-gray-900 to-black p-8 transition-all duration-300 hover:border-green-500/30'
+                className='group rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/10 dark:border-neutral-800 dark:bg-[#111111] dark:hover:border-green-500/50'
               >
-                <div className='mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-800/50 transition-transform group-hover:scale-110'>
+                <div className='mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-neutral-100 transition-transform group-hover:scale-110 dark:bg-gray-800/50'>
                   {event.icon}
                 </div>
-                <h3 className='mb-4 text-2xl font-bold'>{event.title}</h3>
-                <p className='leading-relaxed text-gray-400'>
+                <h3 className='mb-4 text-2xl font-bold text-black dark:text-white'>
+                  {event.title}
+                </h3>
+                <p className='leading-relaxed text-neutral-600 dark:text-gray-400'>
                   {event.description}
                 </p>
               </motion.div>
@@ -200,7 +193,7 @@ export default function CommunityTeamContent() {
             ].map((img, i) => (
               <div
                 key={i}
-                className='group relative flex aspect-video items-center justify-center overflow-hidden rounded-xl border border-gray-800 bg-gray-900'
+                className='group relative flex aspect-video items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900'
               >
                 <Image
                   src={img.src}
@@ -220,12 +213,14 @@ export default function CommunityTeamContent() {
           whileInView='visible'
           viewport={{ once: true }}
           variants={containerVariants}
-          className='rounded-[3rem] border border-green-900/30 bg-green-950/20 p-8 md:p-16'
+          className='rounded-3xl border border-neutral-200 bg-neutral-50/50 p-8 md:p-16 dark:border-neutral-800 dark:bg-[#111111]'
         >
           <div className='mx-auto max-w-4xl space-y-12 text-center'>
             <div>
-              <h2 className='mb-6 text-4xl font-bold'>How We Work</h2>
-              <p className='text-lg leading-relaxed text-gray-300'>
+              <h2 className='mb-6 text-3xl font-bold text-black sm:text-4xl dark:text-white'>
+                How We Work
+              </h2>
+              <p className='text-base leading-relaxed text-neutral-600 sm:text-lg dark:text-neutral-400'>
                 The Community Team manages events end-to-end: ideation, speaker
                 outreach, logistics coordination, room bookings, marketing
                 requests, and day-of execution. From career-focused panels to
@@ -237,7 +232,7 @@ export default function CommunityTeamContent() {
 
             {/* Timeline */}
             <div className='relative py-12'>
-              <div className='absolute left-0 right-0 top-1/2 hidden h-1 -translate-y-1/2 bg-gradient-to-r from-gray-800 via-green-800 to-gray-800 md:block' />
+              <div className='absolute left-0 right-0 top-1/2 hidden h-1 -translate-y-1/2 bg-gradient-to-r from-neutral-200 via-green-500/50 to-neutral-200 md:block dark:from-gray-800 dark:via-green-800 dark:to-gray-800' />
               <div className='grid gap-8 md:grid-cols-5'>
                 {timeline.map((item, i) => (
                   <motion.div
@@ -245,13 +240,13 @@ export default function CommunityTeamContent() {
                     variants={itemVariants}
                     className='relative z-10 flex flex-col items-center'
                   >
-                    <div className='mb-4 flex h-12 w-12 items-center justify-center rounded-full border-2 border-green-500 bg-gray-900 text-xl font-bold shadow-[0_0_15px_rgba(34,197,94,0.3)]'>
+                    <div className='mb-4 flex h-12 w-12 items-center justify-center rounded-full border-2 border-green-500 bg-white text-xl font-bold shadow-[0_0_15px_rgba(34,197,94,0.3)] dark:bg-gray-900'>
                       {i + 1}
                     </div>
-                    <div className='mb-2 text-lg font-bold text-white'>
+                    <div className='mb-2 text-lg font-bold text-black dark:text-white'>
                       {item.step}
                     </div>
-                    <div className='text-center text-sm text-gray-400'>
+                    <div className='text-center text-sm text-neutral-600 dark:text-gray-400'>
                       {item.desc}
                     </div>
                   </motion.div>
@@ -269,8 +264,8 @@ export default function CommunityTeamContent() {
           variants={containerVariants}
           className='mx-auto max-w-3xl space-y-8 pb-20 text-center'
         >
-          <h2 className='text-4xl font-bold'>Join the Team</h2>
-          <p className='text-xl text-gray-400'>
+          <h2 className='text-4xl font-bold dark:text-white'>Join the Team</h2>
+          <p className='text-xl text-neutral-600 dark:text-gray-400'>
             If you enjoy planning events, working with industry professionals,
             collaborating with other clubs, or building spaces where students
             can grow, the Community Team is a great place to contribute.
@@ -288,7 +283,7 @@ export default function CommunityTeamContent() {
               href='https://www.instagram.com/gdgmcmaster/'
               target='_blank'
               rel='noopener noreferrer'
-              className='rounded-full border border-gray-700 bg-gray-800 px-8 py-4 font-bold text-white transition-all hover:scale-105 hover:bg-gray-700 active:scale-95'
+              className='rounded-full border border-gray-300 bg-neutral-100 px-8 py-4 font-bold text-black transition-all hover:scale-105 hover:bg-neutral-200 active:scale-95 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700'
             >
               Follow our Socials
             </a>

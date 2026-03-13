@@ -62,13 +62,12 @@ export default function AdminTeamSection() {
       >
         <motion.div
           variants={itemVariants}
-          className='group relative overflow-hidden rounded-3xl border border-purple-900/40 bg-gradient-to-br from-gray-900 to-black p-8 transition-colors hover:border-purple-500/50 md:p-10'
+          className='group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 dark:border-neutral-800 dark:bg-[#111111]'
         >
-          <div className='absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl transition-colors group-hover:bg-purple-500/20'></div>
-          <h2 className='relative z-10 mb-6 text-3xl font-bold text-white'>
+          <h2 className='relative z-10 mb-6 text-2xl font-bold text-black sm:text-3xl dark:text-white'>
             Supporting Sub-teams
           </h2>
-          <p className='relative z-10 text-lg leading-relaxed text-gray-400'>
+          <p className='relative z-10 text-base leading-relaxed text-neutral-600 sm:text-lg dark:text-neutral-400'>
             We work with the leads of each sub-team (Community, Hackathon,
             Marketing & Branding, and Open Source) to provide strategic
             guidance, operational support, and resource coordination. From
@@ -80,13 +79,12 @@ export default function AdminTeamSection() {
 
         <motion.div
           variants={itemVariants}
-          className='group relative overflow-hidden rounded-3xl border border-indigo-900/40 bg-gradient-to-bl from-gray-900 to-black p-8 transition-colors hover:border-indigo-500/50 md:p-10'
+          className='group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 dark:border-neutral-800 dark:bg-[#111111]'
         >
-          <div className='absolute bottom-0 left-0 -mb-32 -ml-32 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl transition-colors group-hover:bg-indigo-500/20'></div>
-          <h2 className='relative z-10 mb-6 text-3xl font-bold text-white'>
+          <h2 className='relative z-10 mb-6 text-2xl font-bold text-black sm:text-3xl dark:text-white'>
             Building Partnerships
           </h2>
-          <p className='relative z-10 text-lg leading-relaxed text-gray-400'>
+          <p className='relative z-10 text-base leading-relaxed text-neutral-600 sm:text-lg dark:text-neutral-400'>
             Beyond day-to-day coordination, our Admin Team focuses on
             maintaining relationships with external partners including other
             student organizations, GDG chapters, and the broader GDG
@@ -99,13 +97,13 @@ export default function AdminTeamSection() {
 
       {/* By The Numbers */}
       <motion.div
-        className='rounded-[3rem] border border-purple-900/30 bg-purple-950/20 p-8 text-center md:p-16'
+        className='rounded-3xl border border-neutral-200 bg-neutral-50/50 p-8 text-center md:p-16 dark:border-neutral-800 dark:bg-[#111111]'
         initial='hidden'
         whileInView='visible'
         viewport={{ once: true }}
         variants={containerVariants}
       >
-        <h2 className='mb-16 text-4xl font-bold'>
+        <h2 className='mb-16 text-3xl font-bold text-black sm:text-4xl dark:text-white'>
           GDG McMasterU By the Numbers
         </h2>
 
@@ -114,13 +112,13 @@ export default function AdminTeamSection() {
             <motion.div
               key={i}
               variants={itemVariants}
-              className={`flex flex-col items-center rounded-2xl border border-purple-900/20 bg-black/40 p-8 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-2 ${i === 3 || i === 4 ? 'lg:col-span-1.5' : ''}`}
+              className={`flex flex-col items-center rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 dark:border-neutral-800 dark:bg-[#111111] ${i === 3 || i === 4 ? 'lg:col-span-1.5' : ''}`}
             >
               {stat.icon}
-              <div className='mb-4 bg-gradient-to-b from-white to-gray-400 bg-clip-text text-5xl font-extrabold text-transparent'>
+              <div className='mb-4 text-5xl font-extrabold text-black dark:text-white'>
                 {stat.value}
               </div>
-              <div className='text-lg font-medium text-purple-200'>
+              <div className='text-base font-medium text-neutral-600 sm:text-lg dark:text-neutral-400'>
                 {stat.label}
               </div>
             </motion.div>

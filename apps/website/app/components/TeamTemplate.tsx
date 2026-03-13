@@ -22,7 +22,42 @@ interface TeamTemplateProps {
   team: TeamData
 }
 
+const colorMap: Record<string, Record<string, string>> = {
+  purple: {
+    bg: 'bg-purple-500',
+    text: 'text-purple-600 dark:text-purple-400',
+    borderHover: 'hover:border-purple-500/50',
+    shadowHover: 'hover:shadow-purple-500/10',
+  },
+  red: {
+    bg: 'bg-red-500',
+    text: 'text-red-500 dark:text-red-400',
+    borderHover: 'hover:border-red-500/50',
+    shadowHover: 'hover:shadow-red-500/10',
+  },
+  blue: {
+    bg: 'bg-blue-500',
+    text: 'text-blue-600 dark:text-blue-400',
+    borderHover: 'hover:border-blue-500/50',
+    shadowHover: 'hover:shadow-blue-500/10',
+  },
+  green: {
+    bg: 'bg-green-500',
+    text: 'text-green-600 dark:text-green-400',
+    borderHover: 'hover:border-green-500/50',
+    shadowHover: 'hover:shadow-green-500/10',
+  },
+  yellow: {
+    bg: 'bg-yellow-500',
+    text: 'text-yellow-600 dark:text-yellow-400',
+    borderHover: 'hover:border-yellow-500/50',
+    shadowHover: 'hover:shadow-yellow-500/10',
+  },
+}
+
 const TeamTemplate = ({ team }: TeamTemplateProps) => {
+  const colorBase = team.color.split('-')[0] || 'blue'
+  const styles = colorMap[colorBase] || colorMap['blue']
   return (
     <div className='flex flex-col gap-y-8'>
       {/* Hero Section */}
@@ -32,7 +67,9 @@ const TeamTemplate = ({ team }: TeamTemplateProps) => {
       >
         <div className='flex w-full flex-col items-center'>
           <div className='flex max-w-2xl flex-col items-center justify-center gap-y-4 text-center'>
-            <Pill className={`bg-${team.color}`}>{team.name} Team</Pill>
+            <Pill className={`${styles.bg} text-white dark:text-white`}>
+              {team.name} Team
+            </Pill>
             <h1>{team.description}</h1>
             <p className='text-lg text-neutral-600 dark:text-neutral-400'>
               {team.overview}
@@ -95,65 +132,69 @@ const TeamTemplate = ({ team }: TeamTemplateProps) => {
           description='Join us at our upcoming events'
         >
           <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
-            {team.events.map((event, idx) => (
-              <div
-                key={idx}
-                className='group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10 dark:border-neutral-800 dark:bg-[#111111] dark:hover:border-blue-500/50'
-              >
-                {/* Cover Image (16:9 ratio) */}
-                <div className='relative aspect-video w-full overflow-hidden border-b border-neutral-100 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900'>
-                  {event.image ? (
-                    <Image
-                      src={event.image}
-                      alt={event.name}
-                      fill
-                      className='object-cover transition-transform duration-700 group-hover:scale-105'
-                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                    />
-                  ) : (
-                    <div className='flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-neutral-100 to-neutral-200 p-6 text-center dark:from-neutral-800 dark:to-neutral-900'>
-                      <FiCalendar className='mb-2 text-4xl text-neutral-400 dark:text-neutral-600' />
-                    </div>
-                  )}
-                  {/* Subtle dark overlay gradient for polish */}
-                  <div className='pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 to-transparent mix-blend-multiply dark:from-black/20 dark:mix-blend-normal' />
-                </div>
-
-                {/* Content Bottom Info */}
-                <div className='flex flex-1 flex-col p-6'>
-                  <h3 className='mb-2 line-clamp-2 text-xl font-bold text-black dark:text-white'>
-                    {event.name}
-                  </h3>
-
-                  <div className='mb-4 flex flex-col gap-1 text-sm font-medium text-blue-600 dark:text-blue-400'>
-                    <div className='flex items-center gap-2'>
-                      <FiCalendar /> {event.date}
-                    </div>
-                    <div className='flex items-center gap-2'>
-                      <FiMapPin /> {event.location}
-                    </div>
+            {team.events.map((event, idx) => {
+              return (
+                <div
+                  key={idx}
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 ${styles.borderHover} hover:shadow-2xl ${styles.shadowHover} dark:border-neutral-800 dark:bg-[#111111] dark:${styles.borderHover}`}
+                >
+                  {/* Cover Image (16:9 ratio) */}
+                  <div className='relative aspect-video w-full overflow-hidden border-b border-neutral-100 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900'>
+                    {event.image ? (
+                      <Image
+                        src={event.image}
+                        alt={event.name}
+                        fill
+                        className='object-cover transition-transform duration-700 group-hover:scale-105'
+                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                      />
+                    ) : (
+                      <div className='flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-neutral-100 to-neutral-200 p-6 text-center dark:from-neutral-800 dark:to-neutral-900'>
+                        <FiCalendar className='mb-2 text-4xl text-neutral-400 dark:text-neutral-600' />
+                      </div>
+                    )}
+                    {/* Subtle dark overlay gradient for polish */}
+                    <div className='pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 to-transparent mix-blend-multiply dark:from-black/20 dark:mix-blend-normal' />
                   </div>
 
-                  <p className='mb-6 line-clamp-3 w-full flex-grow text-sm leading-relaxed text-neutral-600 dark:text-neutral-400'>
-                    {event.description}
-                  </p>
+                  {/* Content Bottom Info */}
+                  <div className='flex flex-1 flex-col p-6'>
+                    <h3 className='mb-2 line-clamp-2 text-xl font-bold text-black dark:text-white'>
+                      {event.name}
+                    </h3>
 
-                  {/* Footer Action Button */}
-                  {event.link && (
-                    <div className='mt-auto pt-4'>
-                      <Link
-                        href={event.link}
-                        target='_blank'
-                        className='group/btn flex w-full items-center justify-center gap-x-2 rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02] hover:bg-black active:scale-[0.98] dark:bg-white dark:text-black dark:hover:bg-neutral-200'
-                      >
-                        <FiLink className='text-lg transition-transform group-hover/btn:scale-110' />
-                        Learn More
-                      </Link>
+                    <div
+                      className={`mb-4 flex flex-col gap-1 text-sm font-medium ${styles.text}`}
+                    >
+                      <div className='flex items-center gap-2'>
+                        <FiCalendar /> {event.date}
+                      </div>
+                      <div className='flex items-center gap-2'>
+                        <FiMapPin /> {event.location}
+                      </div>
                     </div>
-                  )}
+
+                    <p className='mb-6 line-clamp-3 w-full flex-grow text-sm leading-relaxed text-neutral-600 dark:text-neutral-400'>
+                      {event.description}
+                    </p>
+
+                    {/* Footer Action Button */}
+                    {event.link && (
+                      <div className='mt-auto pt-4'>
+                        <Link
+                          href={event.link}
+                          target='_blank'
+                          className='group/btn flex w-full items-center justify-center gap-x-2 rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02] hover:bg-black active:scale-[0.98] dark:bg-white dark:text-black dark:hover:bg-neutral-200'
+                        >
+                          <FiLink className='text-lg transition-transform group-hover/btn:scale-110' />
+                          Learn More
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </SectionCard>
       )}
@@ -188,7 +229,7 @@ const TeamTemplate = ({ team }: TeamTemplateProps) => {
       )}
 
       {/* Conditionally render Hackathon Team Section for Conferences team */}
-      {team.id === 'conferences' && <HackathonTeamSection />}
+      {team.id === 'conferences' && <HackathonTeamSection color={team.color} />}
 
       {/* Conditionally render Open Source Projects Section for Open Source team */}
       {team.id === 'open-source' && <OpenSourceProjectsSection />}
