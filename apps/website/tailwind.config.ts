@@ -2,6 +2,9 @@ import type { Config } from 'tailwindcss'
 
 export default {
   content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -32,9 +35,18 @@ export default {
         'green-500': '#34A853',
         'green-300': '#81C995',
         'yellow-600': '#FA9B00',
+        'yellow-500': '#FBBC04',
         'yellow-200': '#FDE293',
+        'red-600': '#D93025',
         'red-500': '#EA4335',
+        'red-400': '#EE675C',
         'red-300': '#F28B82',
+        'purple-600': '#A142F4',
+        'purple-500': '#AF5CF7',
+        'purple-400': '#C58BF9',
+        'blue-600': '#1A73E8',
+        'green-600': '#1E8E3E',
+        'green-400': '#5BB974',
       },
       animation: {
         'infinite-scroll': 'infinite-scroll 25s linear infinite',
@@ -55,6 +67,26 @@ export default {
       translate: ['group-hover', 'hover-none'], // Extend translate variant to support hover-none
     },
   },
+  safelist: [
+    {
+      pattern:
+        /^(bg|text|border|shadow)-(blue|red|green|yellow|purple)-(400|500|600)$/,
+    },
+    {
+      pattern:
+        /^(bg|text|border|shadow)-(blue|red|green|yellow|purple)-(400|500|600)\/(10|20|30|40|50)$/,
+    },
+    {
+      pattern:
+        /^(bg|text|border|shadow)-(blue|red|green|yellow|purple)-(400|500|600)$/,
+      variants: ['hover', 'focus', 'active', 'dark', 'dark:hover'],
+    },
+    {
+      pattern:
+        /^(bg|text|border|shadow)-(blue|red|green|yellow|purple)-(400|500|600)\/(10|20|30|40|50)$/,
+      variants: ['hover', 'focus', 'active', 'dark', 'dark:hover'],
+    },
+  ],
   darkMode: 'media',
   plugins: [],
 } satisfies Config

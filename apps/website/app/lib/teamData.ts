@@ -1,3 +1,4 @@
+// TODO: Migrate all static content management to Sanity CMS in the future to allow non-technical members to tweak content as needed.
 import { ReactNode } from 'react'
 
 export interface Member {
@@ -115,6 +116,16 @@ export const teamsData: Record<string, TeamData> = {
         url: 'https://linkedin.com/company/gdgmcmasteru',
       },
     ],
+  },
+  admin: {
+    id: 'admin',
+    name: 'Admin',
+    description:
+      'Guiding the overarching mission and operations of GDG McMasterU.',
+    overview:
+      'The Admin Team oversees the chapter operations, providing strategic guidance and resource coordination for all sub-teams.',
+    color: 'purple-500',
+    members: [{ name: 'President', role: 'President' }],
   },
 }
 

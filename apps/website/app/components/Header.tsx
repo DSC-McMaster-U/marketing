@@ -8,7 +8,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { FiCalendar, FiCode, FiMenu, FiStar, FiUsers, FiVolume2, FiX } from 'react-icons/fi'
+import {
+  FiBriefcase,
+  FiCalendar,
+  FiCode,
+  FiMenu,
+  FiStar,
+  FiUsers,
+  FiVolume2,
+  FiX,
+} from 'react-icons/fi'
 
 interface DropdownMenuProps {
   name: string
@@ -135,6 +144,12 @@ const Header = () => {
           description: 'Spreading the word',
           icon: <FiVolume2 />, // Replaced FiMegaphone
         },
+        {
+          href: '/teams/admin',
+          label: 'Admin',
+          description: 'Direction and Operations',
+          icon: <FiBriefcase />,
+        },
       ],
     },
   ]
@@ -179,7 +194,11 @@ const Header = () => {
                   <div
                     className={`${pathname === '/events' ? 'dark:bg-black-03 rounded-2xl bg-white' : ''}`}
                   >
-                    <DropdownMenu name={navLink.name} links={navLink.links} align={navLink.name === 'Teams' ? 'right' : 'left'} />
+                    <DropdownMenu
+                      name={navLink.name}
+                      links={navLink.links}
+                      align={navLink.name === 'Teams' ? 'right' : 'left'}
+                    />
                   </div>
                 ) : (
                   <Link
