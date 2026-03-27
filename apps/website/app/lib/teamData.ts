@@ -52,13 +52,33 @@ export const teamsData: Record<string, TeamData> = {
     ],
     projects: [
       {
-        name: 'GDG Website',
-        description: 'The official website for GDG on Campus McMaster.',
+        name: 'glassbox-llms',
+        description:
+          '🪟🔎 Glassbox LLMs is a GDG open-source project exploring the inner workings of large language models.',
         status: 'active',
-        link: 'https://gdgmcmaster.ca',
-        repo: 'https://github.com/gdg-mcmaster-u/website',
+        repo: 'https://github.com/DSC-McMaster-U/glassbox-llms',
       },
-      // Add placeholders for other projects
+      {
+        name: 'corkboard',
+        description:
+          'Corkboard is a digital hub designed to connect students with on-campus events, clubs, and opportunities.',
+        status: 'active',
+        repo: 'https://github.com/DSC-McMaster-U/corkboard',
+      },
+      {
+        name: 'interface-ai',
+        description:
+          'InterfaceAI is a Chrome extension that turns natural language into action.',
+        status: 'active',
+        repo: 'https://github.com/DSC-McMaster-U/interface-ai',
+      },
+      {
+        name: 'Ocular-Disease-Identifier',
+        description:
+          'Increasing accessibility of diagnosis with ML detection of ocular diseases',
+        status: 'active',
+        repo: 'https://github.com/DSC-McMaster-U/Ocular-Disease-Identifier',
+      },
     ],
   },
   conferences: {
@@ -114,6 +134,15 @@ export const teamsData: Record<string, TeamData> = {
       {
         name: 'LinkedIn',
         url: 'https://linkedin.com/company/gdgmcmasteru',
+      },
+    ],
+    projects: [
+      {
+        name: 'GDG Website',
+        description: 'The official website for GDG on Campus McMaster.',
+        status: 'active',
+        link: 'https://gdgmcmaster.ca',
+        repo: 'https://github.com/gdg-mcmaster-u/website',
       },
     ],
   },
