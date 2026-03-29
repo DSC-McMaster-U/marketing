@@ -156,6 +156,16 @@ export const teamsData: Record<string, TeamData> = {
     color: 'purple-500',
     members: [{ name: 'President', role: 'President' }],
   },
+  admin: {
+    id: 'admin',
+    name: 'Admin',
+    description:
+      'Guiding the overarching mission and operations of GDG McMasterU.',
+    overview:
+      'The Admin Team oversees the chapter operations, providing strategic guidance and resource coordination for all sub-teams.',
+    color: 'purple-500',
+    members: [{ name: 'President', role: 'President' }],
+  },
 }
 
 export const getAllTeamSlugs = () => {
