@@ -425,7 +425,7 @@ const AnnouncementBanner: FC = async () => {
   //   get header, link, button-text from sanity
 
   const heading = '🚀 Join the Mac-a-thon 2026!'
-  const link = 'https://mac-a-thon.gdscmcmasteru.ca/'
+  const link = 'https://macathon.com/'
   const buttonText = 'Learn More'
 
   return <Banner heading={heading} link={link} buttonText={buttonText} />

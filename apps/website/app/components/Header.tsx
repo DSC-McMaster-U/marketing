@@ -103,7 +103,7 @@ const Header = () => {
           icon: <FiCalendar />,
         },
         {
-          href: 'https://mac-a-thon.gdgmcmaster.ca/',
+          href: 'https://macathon.com/',
           label: 'Mac-a-thon',
           description: 'Test your skills',
           icon: <FiStar />,

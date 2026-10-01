@@ -96,7 +96,7 @@ export const teamsData: Record<string, TeamData> = {
         location: 'McMaster University',
         description:
           'Our annual hackathon bringing together students to solve challenges.',
-        link: 'https://mac-a-thon.gdgmcmaster.ca',
+        link: 'https://macathon.com/',
       },
     ],
   },
