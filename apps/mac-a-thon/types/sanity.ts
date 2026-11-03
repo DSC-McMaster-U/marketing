@@ -20,6 +20,16 @@ export interface FAQ {
   _type: 'faq' // Document type
   question: string // The question being asked
   answer: string // The answer to the question
+  showButton?: boolean // Show button
+  buttonText?: string // The text to display on the button
+  buttonIcon?: {
+    // Optional icon to display in the button
+    asset: {
+      _ref: string // Reference to the image asset
+      _type: 'reference' // Reference type
+    }
+  }
+  buttonLink?: string // The link for the button
 }
 
 // Sponsor Schema Type

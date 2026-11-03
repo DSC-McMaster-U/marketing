@@ -1,6 +1,7 @@
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 import type { StructureResolver } from 'sanity/structure'
 
-export const structure: StructureResolver = (S) =>
+export const structure: StructureResolver = (S, context) =>
   S.list()
     .title('Content')
     .items([
@@ -16,9 +17,12 @@ export const structure: StructureResolver = (S) =>
           .schemaType('about') // Reference the schema
           .documentId('singleton-about'), // Fixed document ID to enforce single entry
       ),
-      // Add all other document types except "generalInfo" and "about"
+      // Orderable FAQ list
+      orderableDocumentListDeskItem({ type: 'faq', title: 'FAQ', S, context }),
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          listItem.getId() !== 'generalInfo' && listItem.getId() !== 'about',
+          listItem.getId() !== 'generalInfo' &&
+          listItem.getId() !== 'about' &&
+          listItem.getId() !== 'faq',
       ),
     ])
