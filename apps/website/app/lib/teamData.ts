@@ -50,36 +50,6 @@ export const teamsData: Record<string, TeamData> = {
       { name: 'Open Source Lead', role: 'Team Lead' },
       // Add more members as needed
     ],
-    projects: [
-      {
-        name: 'glassbox-llms',
-        description:
-          '🪟🔎 Glassbox LLMs is a GDG open-source project exploring the inner workings of large language models.',
-        status: 'active',
-        repo: 'https://github.com/DSC-McMaster-U/glassbox-llms',
-      },
-      {
-        name: 'corkboard',
-        description:
-          'Corkboard is a digital hub designed to connect students with on-campus events, clubs, and opportunities.',
-        status: 'active',
-        repo: 'https://github.com/DSC-McMaster-U/corkboard',
-      },
-      {
-        name: 'interface-ai',
-        description:
-          'InterfaceAI is a Chrome extension that turns natural language into action.',
-        status: 'active',
-        repo: 'https://github.com/DSC-McMaster-U/interface-ai',
-      },
-      {
-        name: 'Ocular-Disease-Identifier',
-        description:
-          'Increasing accessibility of diagnosis with ML detection of ocular diseases',
-        status: 'active',
-        repo: 'https://github.com/DSC-McMaster-U/Ocular-Disease-Identifier',
-      },
-    ],
   },
   conferences: {
     id: 'conferences',
