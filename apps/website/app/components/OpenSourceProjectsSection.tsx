@@ -57,10 +57,10 @@ const OpenSourceProjectsSection = () => {
         {/* Header Section */}
         <div className="flex flex-col items-center justify-center text-center w-full max-w-2xl mx-auto mb-16">
           <Pill className="mb-6 bg-blue-500 text-white border-blue-400">
-            Open Source
+            Projects
           </Pill>
           <h2 className="mb-4 text-4xl font-extrabold md:text-5xl text-black dark:text-white tracking-tight">
-            Projects We&apos;ve Built
+            What we are working on
           </h2>
           <p className="text-lg text-neutral-600 dark:text-neutral-400">
             Explore the tools and AI systems developed by our open source team
