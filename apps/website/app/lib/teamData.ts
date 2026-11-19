@@ -65,7 +65,7 @@ export const teamsData: Record<string, TeamData> = {
         date: 'May 2025',
         location: 'McMaster University',
         description:
-          'Our annual hackathon bringing together students to solve challenges.',
+          'A past edition of our annual hackathon that brought students together to solve challenges.',
         link: 'https://macathon.com/',
       },
     ],

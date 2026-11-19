@@ -78,7 +78,7 @@ const HackathonTeamSection = ({
                 <span className={`font-bold ${styles.text}`}> 48 hour </span>{' '}
                 event schedule. With{' '}
                 <span className={`font-bold ${styles.text}`}>3 </span>{' '}
-                successful hackathons (fact check) already under our belt, we
+                successful hackathons already under our belt, we
                 are looking to grow our event and expand our reach into 2027 and
                 beyond with new events, workshops and networking opportunities!
               </p>
