@@ -129,7 +129,7 @@ const TeamTemplate = ({ team }: TeamTemplateProps) => {
         <SectionCard
           id='events'
           title='Events'
-          description='Join us at our upcoming events'
+          description='Explore our events and past highlights'
         >
           <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
             {team.events.map((event, idx) => {
