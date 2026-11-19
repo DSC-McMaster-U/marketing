@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import AnimatedHero from '../components/AnimatedHero'
 import Pill from '../components/Pill'
 import getEvents from '../lib/getEvents'
-import FilteredEvents from './FilteredEvents'
+import FilteredEvents from './filtered.events'
 
 export const metadata: Metadata = {
   title: 'Events | Google Developer Group on Campus | McMaster University',
